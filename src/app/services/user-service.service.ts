@@ -3,24 +3,22 @@ import { IUser } from "app/services/IUser";
 
 @Injectable()
 export class UserService {
-  _totalUsers: number;
-  _userList:IUser[] = [{userName: 'admin', userPassword: 'pass'}];
+  userList:IUser[] = [{userName: 'admin', userPassword: 'pass'}];
+  _totalUsers: number = 1;
+  
   constructor() {
-    this._totalUsers = Math.floor((Math.random() * 10 + 1));
+    this._totalUsers = Math.floor((1 + Math.random() * 10 ));
+
     for(let i=1; i<=this._totalUsers; i++){
-      this._userList[i] = {
+      this.userList.push({
         userName: 'user' + i,
         userPassword: 'pass' + i,
-      }
+      });
     }
   }
 
-  getUserList(): IUser[]{
-    return this._userList;
-  }
-
   getUser(uid:number):IUser{
-    return this._userList[uid];
+    return;
   }
 
   logInUser(userName:string, userPassword: string): boolean{
