@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IUser } from "app/services/IUser";
 
 @Injectable()
-export class UserServiceService {
+export class UserService {
 
   constructor() { }
 

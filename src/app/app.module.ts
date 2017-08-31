@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { UserServiceService } from './services/user-service.service';
-import { ClubServiceService } from './services/club-service.service';
+import { UserService } from './services/user-service.service';
+import { ClubService } from './services/club-service.service';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { ClubServiceService } from './services/club-service.service';
   imports: [
     BrowserModule
   ],
-  providers: [UserServiceService, ClubServiceService],
+  providers: [UserService, ClubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
