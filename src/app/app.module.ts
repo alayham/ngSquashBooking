@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { UserService } from './services/user-service.service';
 import { ClubService } from './services/club-service.service';
 import { UserlistComponent } from './admin/userlist/userlist.component';
+import { ClublistComponent } from './admin/clublist/clublist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserlistComponent
+    UserlistComponent,
+    ClublistComponent
   ],
   imports: [
     BrowserModule

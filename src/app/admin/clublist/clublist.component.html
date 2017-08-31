@@ -1,0 +1,25 @@
+<table>
+    <thead>
+      <tr>
+        <th>ClubName</th>
+        <th>Club Address</th>
+        <th>Total Courts</th>
+        <th>Courts:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let club of clubService.clubList">
+        <td> {{club.clubName}} </td>
+        <td> {{club.clubAddress}} </td>
+        <td> {{club.clubTotalCourts}} </td>
+        <td>
+          <ul>
+            <li *ngFor="let court of club.clubCourts">
+              {{ court.courtName }} - {{ court.courtClub.clubName }}
+            </li>
+          </ul>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
