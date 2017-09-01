@@ -13,7 +13,8 @@ export class ClubService {
         clubName: 'Club ' + i,
         clubCourts: <ICourt[]>[],
         clubAddress: 'Somewhere in this city',
-        clubTotalCourts: Math.floor((7 + Math.random() * 15 ))
+        clubTotalCourts: Math.floor((7 + Math.random() * 15 )),
+        clubPhoto: 'http://via.placeholder.com/400x200/' + this.getRandomColor() ,
       };
       for(let j=0; j<newclub.clubTotalCourts; j++){
         newclub.clubCourts.push({
@@ -24,5 +25,14 @@ export class ClubService {
       }
       this.clubList.push(newclub);
     }
+  }
+
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 }

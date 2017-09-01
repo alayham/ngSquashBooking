@@ -5,4 +5,5 @@ export interface IClub {
     clubCourts: ICourt[];
     clubAddress: string;
     clubTotalCourts:number;
+    clubPhoto: string;
 }
