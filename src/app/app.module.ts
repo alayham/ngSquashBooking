@@ -13,6 +13,8 @@ import { SlotViewComponent } from './admin/slot-view/slot-view.component';
 import { MenuComponent } from './ui/menu/menu.component';
 import { RouterModule }   from '@angular/router';
 import { ClubComponent } from './ui/club/club.component';
+import { ReservationsService } from './services/reservations.service';
+import { ReservationListComponent } from './admin/reservation-list/reservation-list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { ClubComponent } from './ui/club/club.component';
     ClublistComponent,
     SlotViewComponent,
     MenuComponent,
-    ClubComponent
+    ClubComponent,
+    ReservationListComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import { ClubComponent } from './ui/club/club.component';
       { path: '', redirectTo: 'club' , pathMatch: 'full' },
     ])
   ],
-  providers: [UserService, ClubService, SchedulerService],
+  providers: [UserService, ClubService, SchedulerService, ReservationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Club</th>
+      <th>Court</th>
+      <th>user</th>
+      <th>Start</th>
+      <th>End</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservationsService.reservationList">
+        <td>{{ reservation.court.courtClub.clubName }}</td>
+        <td>{{ reservation.court.courtName }}</td>
+        <td>{{ reservation.user.userName }}</td>
+        <td>{{ reservation.timeSlot.startDate }}</td>
+        <td>{{ reservation.timeSlot.endDate }}</td>
+      </tr>
+  </tbody>
+</table>
