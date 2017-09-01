@@ -1,5 +1,5 @@
 <ul data-testing>
 <li *ngFor="let slot of scheduler.timeSlots">
-  {{ slot.startDate }} - {{ slot.endDate }}
-</li>
+    {{ slot.startDate | date:'y-MM-dd - H:mm' }} to {{ slot.endDate  | date:'y-MM-dd - H:mm'}}
+  </li>
 </ul>
