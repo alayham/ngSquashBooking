@@ -1,19 +1,21 @@
-<md-card class="club-card" *ngFor="let club of clubService.clubList">
-  <md-card-header>
-    <div md-card-avatar [style.backgroundImage]="'url('+ club.clubPhoto +')'"></div>
-    <md-card-title>{{ club.clubName }}</md-card-title>
-    <md-card-subtitle>{{club.clubTotalCourts}} Courts</md-card-subtitle>
-  </md-card-header>
-  <img md-card-image [src]="club.clubPhoto" >
-  <md-card-content>
-    <ul>
-      <li *ngFor="let court of club.clubCourts">
-        {{ court.courtName }} 
-      </li>
-    </ul>
-  </md-card-content>
-  <md-card-actions>
-    <button md-button>LIKE</button>
-    <button md-button>SHARE</button>
-  </md-card-actions>
-</md-card>
+<div class="container">
+  <md-card class="club-card" *ngFor="let club of clubService.clubList">
+    <md-card-header>
+      <div md-card-avatar [style.backgroundImage]="'url('+ club.clubPhoto +')'"></div>
+      <md-card-title>{{ club.clubName }}</md-card-title>
+      <md-card-subtitle>{{club.clubTotalCourts}} Courts</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image [src]="club.clubPhoto" >
+    <md-card-content>
+      <ul>
+        <li *ngFor="let court of club.clubCourts">
+          {{ court.courtName }} 
+        </li>
+      </ul>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button>LIKE</button>
+      <button md-button>SHARE</button>
+    </md-card-actions>
+  </md-card>
+</div>
