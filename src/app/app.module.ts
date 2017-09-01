@@ -12,6 +12,7 @@ import { SchedulerService } from './services/scheduler.service';
 import { SlotViewComponent } from './admin/slot-view/slot-view.component';
 import { MenuComponent } from './ui/menu/menu.component';
 import { RouterModule }   from '@angular/router';
+import { ClubComponent } from './ui/club/club.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RouterModule }   from '@angular/router';
     UserlistComponent,
     ClublistComponent,
     SlotViewComponent,
-    MenuComponent
+    MenuComponent,
+    ClubComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +35,8 @@ import { RouterModule }   from '@angular/router';
 
     RouterModule.forRoot([
       { path: 'club', component: ClublistComponent },
-      { path: '', redirectTo: 'club' , pathMatch: 'full' }
-      
+      { path: 'club/:id' , component: ClubComponent },
+      { path: '', redirectTo: 'club' , pathMatch: 'full' },
     ])
   ],
   providers: [UserService, ClubService, SchedulerService],
