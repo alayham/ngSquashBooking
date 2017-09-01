@@ -1,0 +1,13 @@
+<md-toolbar color="primary">    
+    <span>Squash Court Booking</span>
+    <span class="spacer"></span>
+    <button md-button [mdMenuTriggerFor]="userMenu"><md-icon>menu</md-icon> Menu</button>
+    
+</md-toolbar>
+
+<md-menu #userMenu="mdMenu">
+  <button md-menu-item> Log in </button>
+  <button md-menu-item> My profile </button>
+  <button md-menu-item> My Reservations </button>
+  <button md-menu-item> Log out </button>
+</md-menu>

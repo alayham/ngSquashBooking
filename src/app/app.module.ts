@@ -10,13 +10,15 @@ import { UserlistComponent } from './admin/userlist/userlist.component';
 import { ClublistComponent } from './admin/clublist/clublist.component';
 import { SchedulerService } from './services/scheduler.service';
 import { SlotViewComponent } from './admin/slot-view/slot-view.component';
+import { MenuComponent } from './ui/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserlistComponent,
     ClublistComponent,
-    SlotViewComponent
+    SlotViewComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
