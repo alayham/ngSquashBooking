@@ -15,6 +15,7 @@ import { RouterModule }   from '@angular/router';
 import { ClubComponent } from './ui/club/club.component';
 import { ReservationsService } from './services/reservations.service';
 import { ReservationListComponent } from './admin/reservation-list/reservation-list.component';
+import { TimeslotComponent } from './ui/timeslot/timeslot.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ReservationListComponent } from './admin/reservation-list/reservation-l
     SlotViewComponent,
     MenuComponent,
     ClubComponent,
-    ReservationListComponent
+    ReservationListComponent,
+    TimeslotComponent
   ],
   imports: [
     BrowserModule,
