@@ -1,1 +1,1 @@
-{{ slot.startDate | date:'y-MM-dd - H:mm' }} to {{ slot.endDate  | date:'y-MM-dd - H:mm'}}
+<strong>{{ slot.startDate | date:'y-MM-dd' }}</strong>: {{ slot.startDate | date:'H:mm' }} <strong>to</strong> {{ slot.endDate  | date:'H:mm'}}
