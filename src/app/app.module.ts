@@ -21,6 +21,8 @@ import { LoginDialogComponent } from './ui/login-dialog/login-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { ReserveComponent } from './ui/reserve/reserve.component';
 import { ReserveDialogComponent } from './ui/reserve-dialog/reserve-dialog.component';
+import { UnreserveComponent } from './ui/unreserve/unreserve.component';
+import { UnreserveDialogComponent } from './ui/unreserve-dialog/unreserve-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ReserveDialogComponent } from './ui/reserve-dialog/reserve-dialog.compo
     LoginComponent,
     LoginDialogComponent,
     ReserveComponent,
-    ReserveDialogComponent
+    ReserveDialogComponent,
+    UnreserveComponent,
+    UnreserveDialogComponent
   ],
   imports: [
     BrowserModule,
