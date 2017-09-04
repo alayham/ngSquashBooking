@@ -5,6 +5,7 @@ import { IUser } from "app/services/IUser";
 export class UserService {
   userList:IUser[] = [{userName: 'admin', userPassword: 'pass'}];
   _totalUsers: number = 1;
+  user:IUser=null;
   
   constructor() {
     this._totalUsers = Math.floor((1 + Math.random() * 10 ));
@@ -22,6 +23,15 @@ export class UserService {
   }
 
   logInUser(userName:string, userPassword: string): boolean{
+    for(let user of this.userList){
+      if (user.userName == userName && user.userPassword == userPassword){
+        this.user = user;
+        return(true);
+      }
+    }
     return false;
+  }
+  logout(){
+    this.user = null;
   }
 }

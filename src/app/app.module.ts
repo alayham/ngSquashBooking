@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdDialogModule, MdInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { UserService } from './services/user-service.service';
@@ -16,6 +16,11 @@ import { ClubComponent } from './ui/club/club.component';
 import { ReservationsService } from './services/reservations.service';
 import { ReservationListComponent } from './admin/reservation-list/reservation-list.component';
 import { TimeslotComponent } from './ui/timeslot/timeslot.component';
+import { LoginComponent } from './ui/login/login.component';
+import { LoginDialogComponent } from './ui/login-dialog/login-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { ReserveComponent } from './ui/reserve/reserve.component';
+import { ReserveDialogComponent } from './ui/reserve-dialog/reserve-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,11 @@ import { TimeslotComponent } from './ui/timeslot/timeslot.component';
     MenuComponent,
     ClubComponent,
     ReservationListComponent,
-    TimeslotComponent
+    TimeslotComponent,
+    LoginComponent,
+    LoginDialogComponent,
+    ReserveComponent,
+    ReserveDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,15 +45,24 @@ import { TimeslotComponent } from './ui/timeslot/timeslot.component';
     MdCardModule,
     MdToolbarModule,
     MdIconModule,
+    MdDialogModule,
+    MdInputModule,
+    FormsModule,
 
 
     RouterModule.forRoot([
       { path: 'club', component: ClublistComponent },
       { path: 'club/:id' , component: ClubComponent },
       { path: '', redirectTo: 'club' , pathMatch: 'full' },
-    ])
+    ]),
   ],
+
+  entryComponents: [
+    LoginDialogComponent, ReserveDialogComponent
+  ],
+  
   providers: [UserService, ClubService, SchedulerService, ReservationsService],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
