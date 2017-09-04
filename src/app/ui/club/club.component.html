@@ -9,8 +9,15 @@
       <ul>
         <li *ngFor="let court of club.clubCourts">
           {{ court.courtName }} 
+          <ul>
+            <li *ngFor="let slot of reservations.getNextTimeSlots(12)">
+                {{ slot.startDate | date:'y-MM-dd - H:mm' }} to {{ slot.endDate  | date:'y-MM-dd - H:mm'}}
+            </li>
+
+          </ul>
         </li>
       </ul>
+
     </md-card-content>
     <md-card-actions>
       <button md-button>LIKE</button>
