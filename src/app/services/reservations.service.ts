@@ -5,6 +5,7 @@ import { UserService } from "app/services/user-service.service";
 import { SchedulerService } from "app/services/scheduler.service";
 import { ICourt } from "app/services/ICourt";
 import { ITimeSlot } from "app/services/ITimeSlot";
+import { IUser } from "app/services/IUser";
 
 const PROBABILITY_DENOMINATOR = 4; //use 4 for 25%, 5 for 20%, 2 for 50%, default is 4.
 const DEFAULT_TIMESLOTS = 12;
@@ -12,6 +13,7 @@ const DEFAULT_TIMESLOTS = 12;
 export class ReservationsService {
 
   reservationList: IReservation[] = [];
+
   constructor(private clubService: ClubService, private userService: UserService, private schedulerService: SchedulerService) { 
     for(let club of clubService.clubList){
       for(let court of club.clubCourts){
@@ -50,7 +52,25 @@ export class ReservationsService {
     }
     return true;
   }
-    
+ 
+  isReservedByUser(slot: ITimeSlot, court: ICourt, user: IUser){
+    for(let reservation of court.courtReservations){
+      if(reservation.timeSlot == slot ){
+        return (reservation.user == user);
+      }
+    }
+    return false;
+  }
+
+  getSlotReservationForCourt(slot: ITimeSlot, court: ICourt):IReservation{
+    for(let reservation of court.courtReservations){
+      if(reservation.timeSlot == slot ){
+        return reservation;
+      }
+    }
+    return null;
+  }
+
   hasAvailability(court: ICourt)  {
 
     for(let slot of this.getNextTimeSlots()){
@@ -65,7 +85,12 @@ export class ReservationsService {
     return false;
   }
     
-    
+  reserve(reservation: IReservation): IReservation {
+    this.reservationList.push(reservation);
+    reservation.court.courtReservations.push(reservation);
+    return reservation;
+  }
+  
     
 
 }
