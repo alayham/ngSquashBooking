@@ -14,7 +14,7 @@ export class ClubService {
         clubCourts: <ICourt[]>[],
         clubAddress: 'Somewhere in this city',
         clubTotalCourts: Math.floor((7 + Math.random() * 15 )),
-        clubPhoto: 'http://via.placeholder.com/400x200/' + this.getRandomColor() ,
+        clubPhoto: 'http://via.placeholder.com/400x200/' + this.getRandomColor() + '?text=Club ' + i,
       };
       for(let j=0; j<newclub.clubTotalCourts; j++){
         newclub.clubCourts.push({
