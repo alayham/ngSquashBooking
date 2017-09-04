@@ -19,7 +19,7 @@ export class ReserveDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data.court.courtReservations.length);
+
   }
 
   reserve(){
@@ -28,9 +28,7 @@ export class ReserveDialogComponent implements OnInit {
       court: this.data.court,
       timeSlot: this.data.slot,
     };
-    console.log(reservation);
     this.reservationsService.reserve(reservation);
-    console.log(this.data.court.courtReservations.length);
     this.dialogRef.close(reservation);
   }
 }
