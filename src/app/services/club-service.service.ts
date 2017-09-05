@@ -2,10 +2,21 @@ import { Injectable } from '@angular/core';
 import { IClub } from "app/services/IClub";
 import { ICourt } from "app/services/ICourt";
 
+/**
+ * 
+ * 
+ * @export
+ * @class ClubService
+ */
 @Injectable()
 export class ClubService {
   clubList:IClub[] = [];
   totalClubs: number;
+  /**
+   * Creates an instance of ClubService.
+   * 
+   * @memberOf ClubService
+   */
   constructor() {
     this.totalClubs = Math.floor((3 + Math.random() * 10 ));
     for(let i=0; i<= this.totalClubs; i++){
@@ -27,6 +38,13 @@ export class ClubService {
     }
   }
 
+  /**
+   * 
+   * 
+   * @returns 
+   * 
+   * @memberOf ClubService
+   */
   getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '';

@@ -9,11 +9,26 @@ import { IUser } from "app/services/IUser";
 
 const PROBABILITY_DENOMINATOR = 4; //use 4 for 25%, 5 for 20%, 2 for 50%, default is 4.
 const DEFAULT_TIMESLOTS = 12;
+
+/**
+ * 
+ * 
+ * @export
+ * @class ReservationsService
+ */
 @Injectable()
 export class ReservationsService {
 
   reservationList: IReservation[] = [];
 
+  /**
+   * Creates an instance of ReservationsService.
+   * @param {ClubService} clubService 
+   * @param {UserService} userService 
+   * @param {SchedulerService} schedulerService 
+   * 
+   * @memberOf ReservationsService
+   */
   constructor(private clubService: ClubService, private userService: UserService, private schedulerService: SchedulerService) { 
     for(let club of clubService.clubList){
       for(let court of club.clubCourts){
@@ -34,6 +49,14 @@ export class ReservationsService {
   }
 
 
+  /**
+   * 
+   * 
+   * @param {number} [total=DEFAULT_TIMESLOTS] 
+   * @returns {ITimeSlot[]} 
+   * 
+   * @memberOf ReservationsService
+   */
   getNextTimeSlots(total: number = DEFAULT_TIMESLOTS):ITimeSlot[] {
     let now:Date = new Date();
     
@@ -44,6 +67,15 @@ export class ReservationsService {
     }
   }
 
+  /**
+   * 
+   * 
+   * @param {ITimeSlot} slot 
+   * @param {ICourt} court 
+   * @returns {boolean} 
+   * 
+   * @memberOf ReservationsService
+   */
   isFree(slot: ITimeSlot, court: ICourt):boolean {
     for(let reservation of court.courtReservations){
       if(reservation.timeSlot == slot ){
@@ -62,6 +94,15 @@ export class ReservationsService {
     return false;
   }
 
+  /**
+   * 
+   * 
+   * @param {ITimeSlot} slot 
+   * @param {ICourt} court 
+   * @returns {IReservation} 
+   * 
+   * @memberOf ReservationsService
+   */
   getSlotReservationForCourt(slot: ITimeSlot, court: ICourt):IReservation{
     for(let reservation of court.courtReservations){
       if(reservation.timeSlot == slot ){
@@ -71,6 +112,14 @@ export class ReservationsService {
     return null;
   }
 
+  /**
+   * 
+   * 
+   * @param {ICourt} court 
+   * @returns 
+   * 
+   * @memberOf ReservationsService
+   */
   hasAvailability(court: ICourt)  {
 
     for(let slot of this.getNextTimeSlots()){
@@ -85,14 +134,37 @@ export class ReservationsService {
     return false;
   }
     
+  /**
+   * 
+   * 
+   * @param {IReservation} reservation 
+   * @returns {IReservation} 
+   * 
+   * @memberOf ReservationsService
+   */
   reserve(reservation: IReservation): IReservation {
     this.reservationList.push(reservation);
     reservation.court.courtReservations.push(reservation);
     return reservation;
   }
   
+  /**
+   * 
+   * 
+   * @param {IReservation} reservation 
+   * 
+   * @memberOf ReservationsService
+   */
   unreserve(reservation:IReservation){
-    
+    let index = this.reservationList.indexOf(reservation, 0);
+    if (index > -1) {
+      this.reservationList.splice(index, 1);
+    } 
+    index = reservation.court.courtReservations.indexOf(reservation, 0);
+    if (index > -1) {
+      reservation.court.courtReservations.splice(index, 1);
+    } 
+
   }
     
 

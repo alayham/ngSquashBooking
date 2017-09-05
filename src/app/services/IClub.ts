@@ -1,5 +1,11 @@
 import { ICourt } from "app/services/ICourt";
 
+/**
+ * 
+ * 
+ * @export
+ * @interface IClub
+ */
 export interface IClub {
     clubName: string;
     clubCourts: ICourt[];

@@ -6,6 +6,13 @@ import { SchedulerService } from "app/services/scheduler.service";
 import { ReservationsService } from "app/services/reservations.service";
 import { UserService } from "app/services/user-service.service";
 
+/**
+ * 
+ * 
+ * @export
+ * @class ClubComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-club',
   templateUrl: './club.component.html',
@@ -14,8 +21,27 @@ import { UserService } from "app/services/user-service.service";
 export class ClubComponent implements OnInit {
   clubId: number;
   club: IClub;
-  constructor(private route: ActivatedRoute, private router: Router, private clubService: ClubService, private userService: UserService, private reservations: ReservationsService) { }
+  
+  /**
+   * Creates an instance of ClubComponent.
+   * @param {ActivatedRoute} route 
+   * @param {Router} router 
+   * @param {ClubService} clubService 
+   * @param {UserService} userService 
+   * @param {ReservationsService} reservations 
+   * 
+   * @memberOf ClubComponent
+   */
+  constructor(private route: ActivatedRoute, private router: Router, private clubService: ClubService, private userService: UserService, private reservations: ReservationsService) { 
+  
+  }
 
+  /**
+   * 
+   * 
+   * 
+   * @memberOf ClubComponent
+   */
   ngOnInit() : void {
     this.clubId = +this.route.snapshot.paramMap.get('id');
     this.club = this.clubService.clubList[this.clubId];

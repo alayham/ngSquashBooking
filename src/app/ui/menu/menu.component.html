@@ -6,8 +6,8 @@
 </md-toolbar>
 
 <md-menu #userMenu="mdMenu">
-  <button md-menu-item> Log in </button>
-  <button md-menu-item> My profile </button>
-  <button md-menu-item> My Reservations </button>
-  <button md-menu-item> Log out </button>
+  <button md-menu-item (click)="openLoginDialog()"> Log in </button>
+  <button md-menu-item *ngIf="userService.user"> My profile </button>
+  <button md-menu-item *ngIf="userService.user"> My Reservations </button>
+  <button md-menu-item *ngIf="userService.user" (click)="userService.logout()"> Log out </button>
 </md-menu>

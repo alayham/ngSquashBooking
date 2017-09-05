@@ -5,6 +5,13 @@ import { UserService } from "app/services/user-service.service";
 import { ReservationsService } from "app/services/reservations.service";
 import { IReservation } from "app/services/IReservation";
 
+/**
+ * 
+ * 
+ * @export
+ * @class ReserveDialogComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-reserve-dialog',
   templateUrl: './reserve-dialog.component.html',
@@ -12,6 +19,15 @@ import { IReservation } from "app/services/IReservation";
 })
 export class ReserveDialogComponent implements OnInit {
 
+  /**
+   * Creates an instance of ReserveDialogComponent.
+   * @param {UserService} userService 
+   * @param {ReservationsService} reservationsService 
+   * @param {MdDialogRef<ReserveDialogComponent>} dialogRef 
+   * @param {*} [data={}] 
+   * 
+   * @memberOf ReserveDialogComponent
+   */
   constructor(private userService: UserService, private reservationsService: ReservationsService, 
     public dialogRef: MdDialogRef<ReserveDialogComponent>, 
     @Inject(MD_DIALOG_DATA) public data: any = {}) { 
@@ -22,6 +38,12 @@ export class ReserveDialogComponent implements OnInit {
 
   }
 
+  /**
+   * 
+   * 
+   * 
+   * @memberOf ReserveDialogComponent
+   */
   reserve(){
     let reservation: IReservation = {
       user: this.userService.user,

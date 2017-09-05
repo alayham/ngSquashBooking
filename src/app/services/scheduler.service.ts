@@ -10,15 +10,33 @@ const FORWARD_DAYS = 14; // how many days to go forward in the calendar. default
 const DAY_IN_MILLISECONDS =  24 * 60 * 60 * 1000; // the number of milliseconds in a day. DO NOT EDIT.
 
 
+/**
+ * 
+ * 
+ * @export
+ * @class SchedulerService
+ */
 @Injectable()
 export class SchedulerService {
   duration: number = DEFAULT_DURATION;
   
   timeSlots: ITimeSlot[] = [];
+  /**
+   * Creates an instance of SchedulerService.
+   * 
+   * @memberOf SchedulerService
+   */
   constructor() { 
     this.getAllSlots();
   }
 
+  /**
+   * 
+   * 
+   * @param {number} [milliseconds=new Date().valueOf()] 
+   * 
+   * @memberOf SchedulerService
+   */
   getSlotsOfDay(milliseconds: number = new Date().valueOf()){
     let date = new Date(milliseconds);
     let startTime: number = new Date(date.getFullYear(), date.getMonth(), date.getDate(), START_TIME, 0,0,0 ).valueOf();
@@ -35,6 +53,12 @@ export class SchedulerService {
     }
   }
 
+  /**
+   * 
+   * 
+   * 
+   * @memberOf SchedulerService
+   */
   getAllSlots(){
     let backwordDuration: number = BACKWORD_DAYS * DAY_IN_MILLISECONDS;
     let forwardDuration: number = FORWARD_DAYS * DAY_IN_MILLISECONDS;

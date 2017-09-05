@@ -4,6 +4,12 @@ import { ReserveDialogComponent } from "app/ui/reserve-dialog/reserve-dialog.com
 import { ITimeSlot } from "app/services/ITimeSlot";
 import { ICourt } from "app/services/ICourt";
 
+/**
+ * 
+ * 
+ * @export
+ * @class ReserveComponent
+ */
 @Component({
   selector: 'app-reserve',
   templateUrl: './reserve.component.html',
@@ -15,10 +21,22 @@ export class ReserveComponent {
   @Input() slot: ITimeSlot;
   @Input() court: ICourt;
 
+  /**
+   * Creates an instance of ReserveComponent.
+   * @param {MdDialog} dialog 
+   * 
+   * @memberOf ReserveComponent
+   */
   constructor(private dialog: MdDialog) { 
     
   }
 
+  /**
+   * 
+   * 
+   * 
+   * @memberOf ReserveComponent
+   */
   openReserveDialog() {
     this.dialogRef = this.dialog.open(ReserveDialogComponent, {data: { slot: this.slot, court: this.court }});
 

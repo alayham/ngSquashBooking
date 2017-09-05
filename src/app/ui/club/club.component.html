@@ -12,15 +12,7 @@
           <ul>
             <li *ngFor="let slot of reservations.getNextTimeSlots(12)">
                 <app-timeslot [slot] = 'slot'></app-timeslot>
-                <span *ngIf='reservations.getSlotReservationForCourt(slot,court)'>
-                  <span *ngIf="userService.user && reservations.isReservedByUser(slot, court, userService.user)">Reserved to you</span>
-                  <span *ngIf="!userService.user || !reservations.isReservedByUser(slot, court, userService.user)">Unavailable</span>
-                  
-                </span>
-                <span *ngIf='!reservations.getSlotReservationForCourt(slot,court)'>
-                  <app-login *ngIf="!userService.user"></app-login>
-                  <app-reserve *ngIf="userService.user" [slot]="slot" [court]="court"></app-reserve>
-                </span>
+                <app-reservation [slot]="slot" [court]="court"></app-reservation>
               </li>
           </ul>
         </li>

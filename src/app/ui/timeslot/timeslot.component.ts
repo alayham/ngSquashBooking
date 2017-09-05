@@ -1,6 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ITimeSlot } from "app/services/ITimeSlot";
 
+/**
+ * 
+ * 
+ * @export
+ * @class TimeslotComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-timeslot',
   templateUrl: './timeslot.component.html',
@@ -10,6 +17,11 @@ export class TimeslotComponent implements OnInit {
 
   @Input() slot: ITimeSlot;
 
+  /**
+   * Creates an instance of TimeslotComponent.
+   * 
+   * @memberOf TimeslotComponent
+   */
   constructor() { }
 
   ngOnInit() {

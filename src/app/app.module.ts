@@ -23,6 +23,7 @@ import { ReserveComponent } from './ui/reserve/reserve.component';
 import { ReserveDialogComponent } from './ui/reserve-dialog/reserve-dialog.component';
 import { UnreserveComponent } from './ui/unreserve/unreserve.component';
 import { UnreserveDialogComponent } from './ui/unreserve-dialog/unreserve-dialog.component';
+import { ReservationComponent } from './ui/reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UnreserveDialogComponent } from './ui/unreserve-dialog/unreserve-dialog
     ReserveComponent,
     ReserveDialogComponent,
     UnreserveComponent,
-    UnreserveDialogComponent
+    UnreserveDialogComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { UnreserveDialogComponent } from './ui/unreserve-dialog/unreserve-dialog
   ],
 
   entryComponents: [
-    LoginDialogComponent, ReserveDialogComponent
+    LoginDialogComponent, ReserveDialogComponent,UnreserveDialogComponent
   ],
   
   providers: [UserService, ClubService, SchedulerService, ReservationsService],
