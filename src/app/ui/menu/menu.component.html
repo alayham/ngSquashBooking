@@ -2,11 +2,10 @@
     <span>Squash Court Booking</span>
     <span class="spacer"></span>
     <button md-button [mdMenuTriggerFor]="userMenu"><md-icon>menu</md-icon> Menu</button>
-    
 </md-toolbar>
 
 <md-menu #userMenu="mdMenu">
-  <button md-menu-item (click)="openLoginDialog()"> Log in </button>
+  <button md-menu-item (click)="openLoginDialog()" *ngIf="!userService.user"> Log in </button>
   <button md-menu-item *ngIf="userService.user"> My profile </button>
   <button md-menu-item *ngIf="userService.user"> My Reservations </button>
   <button md-menu-item *ngIf="userService.user" (click)="userService.logout()"> Log out </button>
