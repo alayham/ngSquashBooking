@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClubService } from "app/services/club-service.service";
 
 /**
- * 
+ * the club list is showed at the home page of the app.
  * 
  * @export
  * @class ClublistComponent
@@ -17,7 +17,10 @@ export class ClublistComponent implements OnInit {
 
   /**
    * Creates an instance of ClublistComponent.
-   * @param {ClubService} clubService 
+   * 
+   * Dependency Injection:
+   * ---------------------
+   * @param {ClubService} clubService  /used to get the club list
    * 
    * @memberOf ClublistComponent
    */

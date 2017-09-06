@@ -27,7 +27,7 @@ export class SchedulerService {
    * @memberOf SchedulerService
    */
   constructor() { 
-    this.getAllSlots();
+    this.buildAllSlots();
   }
 
   /**
@@ -37,7 +37,7 @@ export class SchedulerService {
    * 
    * @memberOf SchedulerService
    */
-  getSlotsOfDay(milliseconds: number = new Date().valueOf()){
+  buildSlotsOfDay(milliseconds: number = new Date().valueOf()){
     let date = new Date(milliseconds);
     let startTime: number = new Date(date.getFullYear(), date.getMonth(), date.getDate(), START_TIME, 0,0,0 ).valueOf();
     let endTime: number = new Date(date.getFullYear(), date.getMonth(), date.getDate(), END_TIME, 0,0,0 ).valueOf();
@@ -59,15 +59,19 @@ export class SchedulerService {
    * 
    * @memberOf SchedulerService
    */
-  getAllSlots(){
+  buildAllSlots(){
     let backwordDuration: number = BACKWORD_DAYS * DAY_IN_MILLISECONDS;
     let forwardDuration: number = FORWARD_DAYS * DAY_IN_MILLISECONDS;
     let startDate: number = new Date().valueOf() - backwordDuration;
     let endDate:number = new Date().valueOf() + forwardDuration;
     let tmpDuration:number = startDate;
     while(tmpDuration < endDate){
-      this.getSlotsOfDay(tmpDuration);
+      this.buildSlotsOfDay(tmpDuration);
       tmpDuration += DAY_IN_MILLISECONDS;
     }
   }
+
+  
+
+
 }

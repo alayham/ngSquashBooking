@@ -7,7 +7,9 @@ import { ReservationsService } from "app/services/reservations.service";
 import { UserService } from "app/services/user-service.service";
 
 /**
- * 
+ * The Club Component
+ * Display a club page at '/club/:id'.
+ * The template includes many nested components.
  * 
  * @export
  * @class ClubComponent
@@ -24,20 +26,24 @@ export class ClubComponent implements OnInit {
   
   /**
    * Creates an instance of ClubComponent.
-   * @param {ActivatedRoute} route 
+   * 
+   * Dependency Injections:
+   * ----------------------
+   * @param {ActivatedRoute} route //Used to find the ID of the club from the route.
    * @param {Router} router 
-   * @param {ClubService} clubService 
-   * @param {UserService} userService 
-   * @param {ReservationsService} reservations 
+   * @param {ClubService} clubService // Used to fetch Club information
+   * @param {UserService} userService // Used to customize club reservation template per user.
+   * @param {ReservationsService} reservations used to query and show reservations.
    * 
    * @memberOf ClubComponent
    */
-  constructor(private route: ActivatedRoute, private router: Router, private clubService: ClubService, private userService: UserService, private reservations: ReservationsService) { 
+  constructor(private route: ActivatedRoute, private router: Router, private clubService: ClubService, 
+              private userService: UserService, private reservations: ReservationsService) { 
   
   }
 
   /**
-   * 
+   * Initialize the club ID from the route.
    * 
    * 
    * @memberOf ClubComponent

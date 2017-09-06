@@ -29,7 +29,7 @@ export class ClubService {
       };
       for(let j=0; j<newclub.clubTotalCourts; j++){
         newclub.clubCourts.push({
-          courtName: newclub.clubName + ' / ' + 'Court ' + j,
+          courtName: 'Court ' + j,
           courtReservations: [],
           courtClub: newclub,
         });

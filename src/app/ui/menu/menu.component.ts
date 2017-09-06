@@ -5,7 +5,6 @@ import { LoginDialogComponent } from "app/ui/login-dialog/login-dialog.component
 
 /**
  * 
- * 
  * @export
  * @class MenuComponent
  * @implements {OnInit}

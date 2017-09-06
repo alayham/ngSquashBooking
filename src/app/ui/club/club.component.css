@@ -1,0 +1,15 @@
+@media (min-width: 40em){
+    .container{
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .containerd{
+        flex: 1 1 50%;
+
+    }
+}
+@media (min-width: 65em){
+    .container{
+        flex: 1 1 25%;
+    }
+}
