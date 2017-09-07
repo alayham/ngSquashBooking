@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { IClub } from "app/services/IClub";
 import { ICourt } from "app/services/ICourt";
 
+const MIN_CLUBS= 3;
+const MAX_CLUBS= 10;
+const MIN_COURTS=7;
+const MAX_COURTS=10;
+
 /**
  * 
  * 
@@ -18,13 +23,13 @@ export class ClubService {
    * @memberOf ClubService
    */
   constructor() {
-    this.totalClubs = Math.floor((3 + Math.random() * 10 ));
+    this.totalClubs = Math.floor((MIN_CLUBS + Math.random() * (MAX_CLUBS - MIN_CLUBS) ));
     for(let i=0; i<= this.totalClubs; i++){
       let newclub = {
         clubName: 'Club ' + i,
         clubCourts: <ICourt[]>[],
         clubAddress: 'Somewhere in this city',
-        clubTotalCourts: Math.floor((7 + Math.random() * 15 )),
+        clubTotalCourts: Math.floor((MIN_COURTS + Math.random() * (MAX_COURTS - MIN_COURTS) )),
         clubPhoto: 'http://via.placeholder.com/400x200/' + this.getRandomColor() + '?text=Club ' + i,
       };
       for(let j=0; j<newclub.clubTotalCourts; j++){

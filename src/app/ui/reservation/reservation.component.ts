@@ -22,6 +22,7 @@ export class ReservationComponent implements OnInit {
   @Input() slot: ITimeSlot;
   @Input() court: ICourt;
 
+  now: Date = new Date();
   /**
    * 
    * 

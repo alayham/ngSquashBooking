@@ -7,15 +7,15 @@
     <md-card-content>
       <div class="">
         <div class="column">
-          <img md-card-image [src]="club.clubPhoto" >
+          <img [src]="club.clubPhoto" >
         </div>
         <div class="column">
           {{club.clubAddress}}
         </div>
       </div>
-      <div>
-        <button *ngFor="let court of club.clubCourts" (click)="setCourt(court)">{{ court.courtName }}</button>
-      </div>
+      <md-toolbar>
+        <button md-raised-button *ngFor="let court of club.clubCourts" (click)="setCourt(court)">{{ court.courtName }}</button>
+      </md-toolbar>
       <app-court-calendar [court]="court"></app-court-calendar>
     </md-card-content>
     <md-card-actions>

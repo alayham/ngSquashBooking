@@ -1,5 +1,5 @@
 <h2>Availability calendar for court {{court.courtName}}</h2>
-<table>
+<table cellpadding="0" cellspacing="0" style="width:100%; text-align:center;">
   <thead>
     <th></th>
     <th *ngFor="let date of schedulerService.getForwardDays()">{{date | date:'y-MM-dd'}}</th>
