@@ -1,0 +1,16 @@
+<h2>Availability calendar for court {{court.courtName}}</h2>
+<table>
+  <thead>
+    <th></th>
+    <th *ngFor="let date of schedulerService.getForwardDays()">{{date | date:'y-MM-dd'}}</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let refSlot of schedulerService.getSlotsOfDay()">
+      <th>{{refSlot.startDate | date:'H:mm'}} - {{refSlot.endDate | date:'H:mm'}}</th>
+      <td *ngFor="let date of schedulerService.getForwardDays()">
+          <app-reservation [slot]="schedulerService.getSlotofTableCell(date,refSlot)" [court]="court"></app-reservation>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  

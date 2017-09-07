@@ -24,6 +24,7 @@ import { ReserveDialogComponent } from './ui/reserve-dialog/reserve-dialog.compo
 import { UnreserveComponent } from './ui/unreserve/unreserve.component';
 import { UnreserveDialogComponent } from './ui/unreserve-dialog/unreserve-dialog.component';
 import { ReservationComponent } from './ui/reservation/reservation.component';
+import { CourtCalendarComponent } from './ui/court-calendar/court-calendar.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ReservationComponent } from './ui/reservation/reservation.component';
     ReserveDialogComponent,
     UnreserveComponent,
     UnreserveDialogComponent,
-    ReservationComponent
+    ReservationComponent,
+    CourtCalendarComponent
   ],
   imports: [
     BrowserModule,

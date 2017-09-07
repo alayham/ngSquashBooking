@@ -1,12 +1,13 @@
 <span *ngIf='reservationsService.getSlotReservationForCourt(slot,court)'>
   <span *ngIf="userService.user && reservationsService.isReservedByUser(slot, court, userService.user)">
-    Reserved to you <app-unreserve [reservation]="reservation"></app-unreserve>
+    <app-unreserve [reservation]="reservation"></app-unreserve>
   </span>
   <span *ngIf="!userService.user || !reservationsService.isReservedByUser(slot, court, userService.user)">
-    Unavailable
+      <button md-raised-button color="warn" color="accent">Unavailable</button>
   </span>
 </span>
-<span *ngIf='!reservationsService.getSlotReservationForCourt(slot,court)'>
+<span *ngIf='slot && court && !reservationsService.getSlotReservationForCourt(slot,court)'>
   <app-login *ngIf="!userService.user"></app-login>
   <app-reserve *ngIf="userService.user" [slot]="slot" [court]="court"></app-reserve>
 </span>
+<span *ngIf="!slot || !court">Error</span>

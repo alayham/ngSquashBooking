@@ -13,17 +13,10 @@
           {{club.clubAddress}}
         </div>
       </div>
-      <md-tab-group>
-        <md-tab *ngFor="let court of club.clubCourts" label="{{ court.courtName }} ">
-          
-          <md-list>
-            <md-list-item *ngFor="let slot of reservations.getNextTimeSlots(12)">
-              <app-timeslot [slot] = 'slot'></app-timeslot>
-              <app-reservation [slot]="slot" [court]="court"></app-reservation>
-            </md-list-item>
-          </md-list>
-        </md-tab>
-      </md-tab-group>
+      <div>
+        <button *ngFor="let court of club.clubCourts" (click)="setCourt(court)">{{ court.courtName }}</button>
+      </div>
+      <app-court-calendar [court]="court"></app-court-calendar>
     </md-card-content>
     <md-card-actions>
       <button md-button>LIKE</button>
