@@ -8,8 +8,11 @@ const BACKWORD_DAYS = 7; //how many days to go backword in the calendar. default
 const FORWARD_DAYS = 7; // how many days to go forward in the calendar. default is 14.
 
 const DAY_IN_MILLISECONDS =  24 * 60 * 60 * 1000; // the number of milliseconds in a day. DO NOT EDIT.
-
-
+const BACKWORD_DURATION = BACKWORD_DAYS * DAY_IN_MILLISECONDS;
+const FORWARD_DURATION = FORWARD_DAYS * DAY_IN_MILLISECONDS;
+const SLOT_DURATION = DEFAULT_DURATION * 60 * 1000;
+const SLOTS_PER_DAY = Math.floor(60 * (END_TIME - START_TIME) / DEFAULT_DURATION);
+const TOTAL_DAYS =  BACKWORD_DAYS + 1 + FORWARD_DAYS;
 /**
  * 
  * 
@@ -18,9 +21,14 @@ const DAY_IN_MILLISECONDS =  24 * 60 * 60 * 1000; // the number of milliseconds 
  */
 @Injectable()
 export class SchedulerService {
-  duration: number = DEFAULT_DURATION;
   
   timeSlots: ITimeSlot[] = [];
+
+  now:Date = new Date();
+
+  startDate:Date = new Date(this.now.valueOf() - BACKWORD_DURATION);
+  endDate:Date =  new Date(this.now.valueOf() + FORWARD_DURATION);
+
   /**
    * Creates an instance of SchedulerService.
    * 
@@ -39,17 +47,16 @@ export class SchedulerService {
    */
   buildSlotsOfDay(milliseconds: number = new Date().valueOf()){
     let date = new Date(milliseconds);
-    let startTime: number = new Date(date.getFullYear(), date.getMonth(), date.getDate(), START_TIME, 0,0,0 ).valueOf();
-    let endTime: number = new Date(date.getFullYear(), date.getMonth(), date.getDate(), END_TIME, 0,0,0 ).valueOf();
-    let duration:number = DEFAULT_DURATION * 60 * 1000;
+    let startTime: number = this.getStartTimeOfDay(date).valueOf();
+    let endTime: number = this.getEndTimeOfDay(date).valueOf();
     let tmpTime = startTime ;
 
     while(tmpTime < endTime){
       this.timeSlots.push({
         startDate: new Date(tmpTime),
-        endDate: new Date(tmpTime + duration),
+        endDate: new Date(tmpTime + SLOT_DURATION),
       });
-      tmpTime += duration;
+      tmpTime += SLOT_DURATION;
     }
   }
 
@@ -60,22 +67,11 @@ export class SchedulerService {
    * @memberOf SchedulerService
    */
   buildAllSlots(){
-    let backwordDuration: number = BACKWORD_DAYS * DAY_IN_MILLISECONDS;
-    let forwardDuration: number = FORWARD_DAYS * DAY_IN_MILLISECONDS;
-    let startDate: number = new Date().valueOf() - backwordDuration;
-    let endDate:number = new Date().valueOf() + forwardDuration;
-    let today:number = new Date().valueOf();
-    let tmpDuration:number = today;
-    while(tmpDuration < endDate){
+    let tmpDuration:number = this.startDate.valueOf();
+    while(tmpDuration < this.endDate.valueOf()){
       this.buildSlotsOfDay(tmpDuration);
       tmpDuration += DAY_IN_MILLISECONDS;
-    }
-    tmpDuration = startDate;
-    while(tmpDuration < today){
-      this.buildSlotsOfDay(tmpDuration);
-      tmpDuration += DAY_IN_MILLISECONDS;
-    }
-    
+    }    
   }
 
   getSlotsOfDay(day: Date = new Date()):ITimeSlot[]{
@@ -112,6 +108,21 @@ export class SchedulerService {
   }
 
   getSlotofTableCell(date: Date, slotTime:ITimeSlot){
+
+    //New logic, Huge performance gain, but might be buggy.
+    let dayIndex:number = Math.floor( (date.valueOf() - this.startDate.valueOf()) / DAY_IN_MILLISECONDS );
+    let timeIndex:number = Math.floor((slotTime.startDate.valueOf() - this.getStartTimeOfDay(slotTime.startDate).valueOf()) / SLOT_DURATION );
+    let slotIndex = dayIndex * SLOTS_PER_DAY + timeIndex;
+    if(this.timeSlots[slotIndex]){
+      return this.timeSlots[slotIndex];
+    }else{
+      return null;
+    }
+
+
+
+    //Original logic, guaranteed to work.
+    /*
     for(let slot of this.timeSlots){
       if( this.isSameDay(date,slot.startDate)  && this.isSameTime(slotTime.startDate, slot.startDate)){
         return slot;
@@ -119,6 +130,7 @@ export class SchedulerService {
     }
     console.log(date,slotTime);
     return(null);
+    */
   }
   isSameDay(date1: Date, date2:Date): boolean{
     return date1.getDate() == date2.getDate() && date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear()
@@ -127,5 +139,11 @@ export class SchedulerService {
     return date1.getHours() == date2.getHours() && date1.getMinutes() == date2.getMinutes() && date1.getSeconds() ==date2.getSeconds();
   }
 
+  getStartTimeOfDay(date:Date):Date{
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate(), START_TIME, 0,0,0 );
+  }
 
+  getEndTimeOfDay(date:Date):Date{
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate(), END_TIME, 0,0,0 );
+  }
 }
