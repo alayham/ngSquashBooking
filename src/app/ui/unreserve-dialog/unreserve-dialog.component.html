@@ -1,12 +1,12 @@
 <h2 md-dialog-title>Reservation Cancellation</h2>
 <md-dialog-content>
   <p>Please confirm cancelling your reservation for the following timeslot:</p>
-  <p>User: {{userService.user.userName}}</p>
-  <p>club: {{ data.court.courtClub.clubName }}</p>
-  <p>Court: {{ data.court.courtName }} </p>
-  <p>TimeSlot: <app-timeslot [slot] = "data.timeSlot"></app-timeslot></p>
+  <p><strong>User:</strong> {{userService.user.userName}}</p>
+  <p><strong>club:</strong> {{ data.court.courtClub.clubName }}</p>
+  <p><strong>Court:</strong> {{ data.court.courtName }} </p>
+  <p><strong>TimeSlot:</strong> <app-timeslot [slot] = "data.timeSlot"></app-timeslot></p>
 </md-dialog-content>
 <md-dialog-actions>
-    <button md-button md-dialog-close>Cancel</button>
-    <button md-button (click) = "unreserve()">Confirm</button>
+    <button md-button color="warn" md-dialog-close>Cancel</button>
+    <button md-button color="primary" (click) = "unreserve()">Confirm</button>
 </md-dialog-actions>  
