@@ -1,17 +1,18 @@
-<span *ngIf='reservationsService.getSlotReservationForCourt(slot,court)'>
-  <span *ngIf="userService.user && reservationsService.isReservedByUser(slot, court, userService.user)">
+<span *ngIf='reservationsService.getSlotReservationForCourt(slot,court); then reserved else notreserved'></span>
+<ng-template #reserved>
+
+  <span *ngIf="userService.user && reservationsService.isReservedByUser(slot, court, userService.user); then reserved_by_user else reserved_by_others"></span>
+  <ng-template #reserved_by_user>  
     <app-unreserve *ngIf="slot.startDate >= now" [reservation]="reservation"></app-unreserve>
     <button  *ngIf='slot.startDate < now' md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>    
-  </span>
-  <span *ngIf="!userService.user || !reservationsService.isReservedByUser(slot, court, userService.user)">
-      <button  *ngIf='slot.startDate >= now' md-raised-button color="warn" color="accent"><md-icon>block</md-icon> Unavailable</button>
+  </ng-template>  
+  <ng-template #reserved_by_others>
+      <button  *ngIf='slot.startDate >= now' md-raised-button color="warn" color="accent"><md-icon>block</md-icon> Reserved</button>
       <button  *ngIf='slot.startDate < now' md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>
-    </span>
-</span>
-<span *ngIf='!reservationsService.getSlotReservationForCourt(slot,court)'>
-  <span *ngIf='slot.startDate < now'>
-    <button md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>
-  </span>  
+  </ng-template>
+</ng-template>
+<ng-template #notreserved>
+  <button *ngIf='slot.startDate < now' md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>
   <app-login *ngIf="slot.startDate >= now && !userService.user"></app-login>
   <app-reserve *ngIf="slot.startDate >= now && userService.user" [slot]="slot" [court]="court"></app-reserve>
-</span>
+</ng-template>
