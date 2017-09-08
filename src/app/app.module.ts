@@ -53,7 +53,6 @@ import { CourtCalendarComponent } from './ui/court-calendar/court-calendar.compo
     MdTabsModule,
     FormsModule,
 
-
     RouterModule.forRoot([
       { path: 'club', component: ClublistComponent },
       { path: 'club/:id' , component: ClubComponent },

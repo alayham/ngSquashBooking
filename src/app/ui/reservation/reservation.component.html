@@ -1,17 +1,16 @@
 <span *ngIf='reservationsService.getSlotReservationForCourt(slot,court); then reserved else notreserved'></span>
 <ng-template #reserved>
-
   <span *ngIf="userService.user && reservationsService.isReservedByUser(slot, court, userService.user); then reserved_by_user else reserved_by_others"></span>
   <ng-template #reserved_by_user>
     <button *ngIf="slot.startDate >= now" md-raised-button color="warn" (click)="openUnreserveDialog()">
       <md-icon>close</md-icon> 
       Unreserve
     </button>
-    <button  *ngIf='slot.startDate < now' md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>    
+    <button *ngIf='slot.startDate < now' md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>    
   </ng-template>  
   <ng-template #reserved_by_others>
-      <button  *ngIf='slot.startDate >= now' md-raised-button color="warn" color="accent"><md-icon>block</md-icon> Reserved</button>
-      <button  *ngIf='slot.startDate < now' md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>
+      <button *ngIf='slot.startDate >= now' md-raised-button color="warn" color="accent"><md-icon>block</md-icon> Reserved</button>
+      <button *ngIf='slot.startDate < now' md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>
   </ng-template>
 </ng-template>
 <ng-template #notreserved>
@@ -20,7 +19,7 @@
     <md-icon>lock_open</md-icon> 
     Login
   </button>
-  <button  *ngIf="slot.startDate >= now && userService.user"  md-raised-button color="primary" (click)="openReserveDialog()">
+  <button *ngIf="slot.startDate >= now && userService.user"  md-raised-button color="primary" (click)="openReserveDialog()">
     <md-icon>check_box</md-icon> 
     Reserve
   </button>
