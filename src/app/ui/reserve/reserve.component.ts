@@ -27,7 +27,7 @@ export class ReserveComponent {
    * 
    * @memberOf ReserveComponent
    */
-  constructor(private dialog: MdDialog) { 
+  constructor(public dialog: MdDialog) { 
     
   }
 

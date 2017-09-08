@@ -8,7 +8,7 @@ import { ReservationsService } from "app/services/reservations.service";
 })
 export class ReservationListComponent implements OnInit {
 
-  constructor(private reservationsService: ReservationsService) {
+  constructor(public reservationsService: ReservationsService) {
 
   }
 

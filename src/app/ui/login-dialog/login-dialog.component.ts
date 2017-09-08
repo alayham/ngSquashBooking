@@ -26,7 +26,7 @@ export class LoginDialogComponent implements OnInit {
    * 
    * @memberOf LoginDialogComponent
    */
-  constructor(private userService: UserService, public dialogRef: MdDialogRef<LoginDialogComponent>, @Inject(MD_DIALOG_DATA) public data: any = {}) { }
+  constructor(public userService: UserService, public dialogRef: MdDialogRef<LoginDialogComponent>, @Inject(MD_DIALOG_DATA) public data: any = {}) { }
 
   ngOnInit() {
   }

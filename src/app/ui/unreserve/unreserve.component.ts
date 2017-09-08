@@ -27,7 +27,7 @@ export class UnreserveComponent {
    * 
    * @memberOf UnreserveComponent
    */
-  constructor(private dialog: MdDialog) { 
+  constructor(public dialog: MdDialog) { 
     
   }
 

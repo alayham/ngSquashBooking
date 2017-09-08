@@ -29,7 +29,7 @@ export class ReservationsService {
    * 
    * @memberOf ReservationsService
    */
-  constructor(private clubService: ClubService, private userService: UserService, private schedulerService: SchedulerService) { 
+  constructor(public clubService: ClubService, public userService: UserService, public schedulerService: SchedulerService) { 
     for(let club of clubService.clubList){
       for(let court of club.clubCourts){
         for(let slot of schedulerService.timeSlots){

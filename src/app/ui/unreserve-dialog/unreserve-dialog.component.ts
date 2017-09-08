@@ -28,7 +28,7 @@ export class UnreserveDialogComponent implements OnInit {
    * 
    * @memberOf UnreserveDialogComponent
    */
-  constructor(private userService: UserService, private reservationsService: ReservationsService, 
+  constructor(public userService: UserService, public reservationsService: ReservationsService, 
     public dialogRef: MdDialogRef<UnreserveDialogComponent>, 
     @Inject(MD_DIALOG_DATA) public data: any = null) { 
 

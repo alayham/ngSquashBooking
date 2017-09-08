@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit {
    * 
    * @memberOf MenuComponent
    */
-  constructor(private userService: UserService, private dialog: MdDialog) { }
+  constructor(public userService: UserService, public dialog: MdDialog) { }
 
   ngOnInit() {
   }

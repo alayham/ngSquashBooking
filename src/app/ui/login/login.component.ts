@@ -23,7 +23,7 @@ export class LoginComponent {
    * 
    * @memberOf LoginComponent
    */
-  constructor(private dialog: MdDialog) { 
+  constructor(public dialog: MdDialog) { 
     
   }
 

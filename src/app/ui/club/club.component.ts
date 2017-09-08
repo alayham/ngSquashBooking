@@ -39,8 +39,8 @@ export class ClubComponent implements OnInit {
    * 
    * @memberOf ClubComponent
    */
-  constructor(private route: ActivatedRoute, private router: Router, private clubService: ClubService, 
-              private userService: UserService, private reservations: ReservationsService) { 
+  constructor(public route: ActivatedRoute, public router: Router, public clubService: ClubService, 
+    public userService: UserService, public reservations: ReservationsService) { 
   
   }
 

@@ -42,7 +42,7 @@ export class ReservationComponent implements OnInit {
    * 
    * @memberOf ReservationComponent
    */
-  constructor(private userService:UserService, private reservationsService: ReservationsService) { 
+  constructor(public userService:UserService, public reservationsService: ReservationsService) { 
 
   }
 
