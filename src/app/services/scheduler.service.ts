@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ITimeSlot } from "app/services/ITimeSlot";
 
-const DEFAULT_DURATION = 60;  // The duration of the reservation, in minutes. default is 45.
+const DEFAULT_DURATION = 45;  // The duration of the reservation, in minutes. default is 45.
 const START_TIME = 10; //The start hour of reservation, default is 10.
 const END_TIME = 22; //the end hour of reservations, default is 22.
-const BACKWORD_DAYS = 14; //how many days to go backword in the calendar. default is 0.
+const BACKWORD_DAYS = 14; //how many days to go backword in the calendar. default is 14.
 const FORWARD_DAYS = 14; // how many days to go forward in the calendar. default is 14.
 
 const DAY_IN_MILLISECONDS =  24 * 60 * 60 * 1000; // the number of milliseconds in a day. DO NOT EDIT.
