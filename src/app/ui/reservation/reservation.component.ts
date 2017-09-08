@@ -4,6 +4,10 @@ import { ITimeSlot } from "app/services/ITimeSlot";
 import { UserService } from "app/services/user-service.service";
 import { ReservationsService } from "app/services/reservations.service";
 import { IReservation } from "app/services/IReservation";
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { LoginDialogComponent } from "app/ui/login-dialog/login-dialog.component";
+import { ReserveDialogComponent } from "app/ui/reserve-dialog/reserve-dialog.component";
+import { UnreserveDialogComponent } from "app/ui/unreserve-dialog/unreserve-dialog.component";
 
 /**
  * 
@@ -22,6 +26,10 @@ export class ReservationComponent implements OnInit {
   @Input() slot: ITimeSlot;
   @Input() court: ICourt;
 
+  loginDialogRef: MdDialogRef<LoginDialogComponent>;
+  reserveDialogRef: MdDialogRef<ReserveDialogComponent>;
+  unreserveDialogRef: MdDialogRef<UnreserveDialogComponent>;
+  
   now: Date = new Date();
   /**
    * 
@@ -42,11 +50,35 @@ export class ReservationComponent implements OnInit {
    * 
    * @memberOf ReservationComponent
    */
-  constructor(public userService:UserService, public reservationsService: ReservationsService) { 
+  constructor(public userService:UserService, public reservationsService: ReservationsService, public dialog: MdDialog) { 
 
   }
 
   ngOnInit() {
 
   }
+  openLoginDialog() {
+    this.loginDialogRef = this.dialog.open(LoginDialogComponent, {data: { userName: 'user1', userPassword: 'pass1' }});
+
+    this.loginDialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
+  openReserveDialog() {
+    this.reserveDialogRef = this.dialog.open(ReserveDialogComponent, {data: { slot: this.slot, court: this.court }});
+
+    this.reserveDialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
+  openUnreserveDialog() {
+    this.unreserveDialogRef = this.dialog.open(UnreserveDialogComponent, { data: this.reservation });
+
+    this.unreserveDialogRef.afterClosed().subscribe(result => {
+ 
+    });
+  }
+
 }

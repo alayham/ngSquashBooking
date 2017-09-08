@@ -16,12 +16,9 @@ import { ClubComponent } from './ui/club/club.component';
 import { ReservationsService } from './services/reservations.service';
 import { ReservationListComponent } from './admin/reservation-list/reservation-list.component';
 import { TimeslotComponent } from './ui/timeslot/timeslot.component';
-import { LoginComponent } from './ui/login/login.component';
 import { LoginDialogComponent } from './ui/login-dialog/login-dialog.component';
 import { FormsModule } from '@angular/forms';
-import { ReserveComponent } from './ui/reserve/reserve.component';
 import { ReserveDialogComponent } from './ui/reserve-dialog/reserve-dialog.component';
-import { UnreserveComponent } from './ui/unreserve/unreserve.component';
 import { UnreserveDialogComponent } from './ui/unreserve-dialog/unreserve-dialog.component';
 import { ReservationComponent } from './ui/reservation/reservation.component';
 import { CourtCalendarComponent } from './ui/court-calendar/court-calendar.component';
@@ -36,11 +33,8 @@ import { CourtCalendarComponent } from './ui/court-calendar/court-calendar.compo
     ClubComponent,
     ReservationListComponent,
     TimeslotComponent,
-    LoginComponent,
     LoginDialogComponent,
-    ReserveComponent,
     ReserveDialogComponent,
-    UnreserveComponent,
     UnreserveDialogComponent,
     ReservationComponent,
     CourtCalendarComponent
