@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IUser } from "app/services/IUser";
 
+const MIN_USERS = 300; //the minumum number of users to generate randomly
+const MAX_USERS = 500; //the maximum number of users to generate randomly
 /**
  * 
  * 
@@ -9,7 +11,7 @@ import { IUser } from "app/services/IUser";
  */
 @Injectable()
 export class UserService {
-  userList:IUser[] = [{userName: 'admin', userPassword: 'pass'}];
+  userList:IUser[] = [{userName: 'admin', userPassword: 'pass', userPhoto: 'http://via.placeholder.com/200x400/?text=admin'}];
   _totalUsers: number = 1;
   user:IUser=null;
   
@@ -19,12 +21,13 @@ export class UserService {
    * @memberOf UserService
    */
   constructor() {
-    this._totalUsers = Math.floor((1 + Math.random() * 10 ));
+    this._totalUsers = Math.floor((MIN_USERS + Math.random() * MAX_USERS ));
 
     for(let i=1; i<=this._totalUsers; i++){
       this.userList.push({
         userName: 'user' + i,
         userPassword: 'pass' + i,
+        userPhoto: 'http://via.placeholder.com/200x400/?text=user' + i
       });
     }
   }
