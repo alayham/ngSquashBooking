@@ -1,0 +1,15 @@
+img.user-image{
+    width:200px;
+    height: 400px;
+    float: left;
+    margin: 2em;
+}
+
+table.reservations{
+    width:100%;
+}
+table.reservations th, table.reservations td{
+    padding: 1em;
+    text-align: left;
+    width: 25%;
+}    

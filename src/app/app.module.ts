@@ -22,6 +22,7 @@ import { ReserveDialogComponent } from './ui/reserve-dialog/reserve-dialog.compo
 import { UnreserveDialogComponent } from './ui/unreserve-dialog/unreserve-dialog.component';
 import { ReservationComponent } from './ui/reservation/reservation.component';
 import { CourtCalendarComponent } from './ui/court-calendar/court-calendar.component';
+import { UserProfileComponent } from './ui/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CourtCalendarComponent } from './ui/court-calendar/court-calendar.compo
     ReserveDialogComponent,
     UnreserveDialogComponent,
     ReservationComponent,
-    CourtCalendarComponent
+    CourtCalendarComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,7 @@ import { CourtCalendarComponent } from './ui/court-calendar/court-calendar.compo
     RouterModule.forRoot([
       { path: 'club', component: ClublistComponent },
       { path: 'club/:id' , component: ClubComponent },
+      { path: 'user', component: UserProfileComponent },
       { path: '', redirectTo: 'club' , pathMatch: 'full' },
     ]),
   ],
