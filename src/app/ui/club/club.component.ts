@@ -23,6 +23,7 @@ import { ICourt } from "app/services/ICourt";
 })
 export class ClubComponent implements OnInit {
   clubId: number;
+  courtID: number;
   club: IClub;
   court: ICourt;
   
@@ -52,8 +53,9 @@ export class ClubComponent implements OnInit {
    */
   ngOnInit() : void {
     this.clubId = +this.route.snapshot.paramMap.get('id');
+    this.courtID = +this.route.snapshot.paramMap.get('cid');
     this.club = this.clubService.clubList[this.clubId];
-    this.court=this.club.clubCourts[0];
+    this.court=this.club.clubCourts[this.courtID];
   }
 
   setCourt(court:ICourt) {

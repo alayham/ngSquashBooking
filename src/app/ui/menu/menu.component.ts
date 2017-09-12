@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "app/services/user-service.service";
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { LoginDialogComponent } from "app/ui/login-dialog/login-dialog.component";
+import { DialogsService } from "app/services/dialogs/dialogs.service";
 
 /**
  * 
@@ -25,23 +26,8 @@ export class MenuComponent implements OnInit {
    * 
    * @memberOf MenuComponent
    */
-  constructor(public userService: UserService, public dialog: MdDialog) { }
+  constructor(public userService: UserService, public dialogsService: DialogsService) { }
 
   ngOnInit() {
   }
-
-  /**
-   * 
-   * 
-   * 
-   * @memberOf MenuComponent
-   */
-  openLoginDialog() {
-    this.dialogRef = this.dialog.open(LoginDialogComponent, {data: { userName: 'user1', userPassword: 'pass1' }});
-
-    this.dialogRef.afterClosed().subscribe(result => {
-
-    });
-  }
-  
 }

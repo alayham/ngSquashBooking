@@ -2,14 +2,17 @@
     .container{
         display: flex;
         flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        align-content: flex-start;
     }
     .club-card{
-        flex: 1 1 50%;
-
+        flex: 0 1 47%;
+        margin: 1em 0;
     }
 }
 @media (min-width: 65em){
     .club-card{
-        flex: 1 1 25%;
+        flex: 0 1 22%;
     }
 }

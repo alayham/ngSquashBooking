@@ -43,6 +43,16 @@ export class ClubService {
     }
   }
 
+  getAllCourts():ICourt[]{
+    let tmpCourts:ICourt[] = [];
+      for(let club of this.clubList){
+        for (let court of club.clubCourts)
+        tmpCourts.push(court);
+      }
+    return tmpCourts
+  }
+
+
   /**
    * 
    * 

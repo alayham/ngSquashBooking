@@ -1,11 +1,9 @@
 <md-toolbar color="primary">    
     <button md-raised-button color="primary" [routerLink] ="['']">Squash Court Booking</button>
+    <button md-raised-button color="primary" [routerLink] ="['/search']">Search availability</button>
     <span class="spacer"></span>
-    <button md-button [mdMenuTriggerFor]="userMenu"><md-icon>menu</md-icon> Menu</button>
+    <button md-raised-button  color="primary" (click)="dialogsService.openLoginDialog()" *ngIf="!userService.user"> Log in </button>
+    <button md-raised-button  color="primary" *ngIf="userService.user" [routerLink]="['/user']"> My Profile </button>
+    <button md-raised-button  color="primary" *ngIf="userService.user" (click)="userService.logout()"> Log out </button>
 </md-toolbar>
 
-<md-menu #userMenu="mdMenu">
-  <button md-menu-item (click)="openLoginDialog()" *ngIf="!userService.user"> Log in </button>
-  <button md-menu-item *ngIf="userService.user" [routerLink]="['/user']"> My Profile </button>
-  <button md-menu-item *ngIf="userService.user" (click)="userService.logout()"> Log out </button>
-</md-menu>

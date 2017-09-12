@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdDialogModule, MdInputModule, MdListModule, MdTabsModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, 
+          MdDialogModule, MdInputModule, MdListModule, 
+          MdSelectModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { UserService } from './services/user-service.service';
@@ -23,6 +25,8 @@ import { UnreserveDialogComponent } from './ui/unreserve-dialog/unreserve-dialog
 import { ReservationComponent } from './ui/reservation/reservation.component';
 import { CourtCalendarComponent } from './ui/court-calendar/court-calendar.component';
 import { UserProfileComponent } from './ui/user-profile/user-profile.component';
+import { SearchComponent } from './ui/search/search.component';
+import { DialogsService } from "app/services/dialogs/dialogs.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +43,8 @@ import { UserProfileComponent } from './ui/user-profile/user-profile.component';
     UnreserveDialogComponent,
     ReservationComponent,
     CourtCalendarComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -52,14 +57,18 @@ import { UserProfileComponent } from './ui/user-profile/user-profile.component';
     MdDialogModule,
     MdInputModule,
     MdListModule,
-    MdTabsModule,
+    MdSelectModule,
+    
     FormsModule,
 
     RouterModule.forRoot([
       { path: 'club', component: ClublistComponent },
       { path: 'club/:id' , component: ClubComponent },
+      { path: 'club/:id/:cid' , component: ClubComponent },
       { path: 'user', component: UserProfileComponent },
+      { path: 'search', component: SearchComponent },      
       { path: '', redirectTo: 'club' , pathMatch: 'full' },
+      { path: '**', redirectTo: 'club' , pathMatch: 'full' },
     ]),
   ],
 
@@ -67,7 +76,7 @@ import { UserProfileComponent } from './ui/user-profile/user-profile.component';
     LoginDialogComponent, ReserveDialogComponent,UnreserveDialogComponent
   ],
   
-  providers: [UserService, ClubService, SchedulerService, ReservationsService],
+  providers: [UserService, ClubService, SchedulerService, ReservationsService, DialogsService],
   
   bootstrap: [AppComponent]
 })

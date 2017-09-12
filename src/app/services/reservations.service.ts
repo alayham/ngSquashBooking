@@ -7,7 +7,7 @@ import { ICourt } from "app/services/ICourt";
 import { ITimeSlot } from "app/services/ITimeSlot";
 import { IUser } from "app/services/IUser";
 
-const PROBABILITY_DENOMINATOR = 4; //use 4 for 25%, 5 for 20%, 2 for 50%, default is 4.
+const PROBABILITY_DENOMINATOR = 1.5; //use 4 for 25%, 5 for 20%, 2 for 50%, default is 4.
 const DEFAULT_TIMESLOTS = 12;
 
 /**

@@ -1,0 +1,26 @@
+<md-toolbar>  
+    <select  [(ngModel)]="dateInput">
+        <option *ngFor="let day of schedulerService.getForwardDays(now)" [value]="day.valueOf()">
+            {{day | date:'MMM-dd'}}
+        </option>
+    </select>
+    <select mdInput placeholder="" [(ngModel)]="slotId">
+        <option *ngFor="let slot of timeslots; let i = index" [value] = "i">
+            {{slot.startDate  | date:'H:mm' }} - {{slot.endDate  | date:'H:mm' }}
+        </option>
+    </select> 
+</md-toolbar>
+    
+<md-toolbar  *ngIf="slot"><p *ngIf="slot">Available courts on {{scheduleDay | date:'y-MM-dd'}} at {{slot.startDate  | date:'H:mm' }} - {{slot.endDate  | date:'H:mm' }}</p></md-toolbar>
+
+<div *ngIf="slot">
+    <div *ngFor="let court of clubService.getAllCourts()">
+        <span *ngIf="!reservationsService.getSlotReservationForCourt(slot,court) || reservationsService.getSlotReservationForCourt(slot,court).user == userService.user">
+            <button ng-raised-button color="primary" (click)="dialogsService.openLoginDialog()" *ngIf="!reservationsService.getSlotReservationForCourt(slot,court) && !userService.user">Login</button>
+            <button ng-raised-button color="primary" (click)="dialogsService.openReserveDialog(slot,court)" *ngIf="!reservationsService.getSlotReservationForCourt(slot,court) && userService.user">Reserve</button>
+            <button ng-raised-button color="warn" (click)="dialogsService.openUnreserveDialog(reservationsService.getSlotReservationForCourt(slot,court))" *ngIf="userService.user && reservationsService.getSlotReservationForCourt(slot,court) && reservationsService.getSlotReservationForCourt(slot,court).user == userService.user">Unreserve</button>
+            
+            {{court.courtClub.clubName}} / {{court.courtName}} - <app-timeslot *ngIf="slot" [slot]="slot"></app-timeslot>
+        </span>
+    </div>
+</div>

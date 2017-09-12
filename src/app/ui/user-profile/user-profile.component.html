@@ -8,6 +8,7 @@
     <img class="user-image" src="{{userService.user.userPhoto}}" />
     <p>Name: {{userService.user.userName}}</p>
   
+  <div *ngIf="upcomingReservations.length > 0"> 
   <md-toolbar><h3>Upcoming Reservations</h3></md-toolbar>
   <table class="reservations">
     <thead>
@@ -31,7 +32,8 @@
       </td>
     </tr>
   </table>
-
+  </div>
+  <div *ngIf="previousReservations.length > 0">
   <md-toolbar><h3>Previous Reservations</h3></md-toolbar>
   <table class="reservations">
     <thead>
@@ -55,5 +57,5 @@
       </td>
     </tr>
   </table>
-  
+  </div>
 </ng-template>

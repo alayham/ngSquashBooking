@@ -98,8 +98,7 @@ export class SchedulerService {
     return
   }
 
-  getForwardDays():Date[]{
-    let today=new Date();
+  getForwardDays(today:Date = new Date()):Date[]{
     let forwardDays:Date[] = [today];
     for(let i = 1; i <FORWARD_DAYS; i++){
       forwardDays.push(new Date(today.valueOf() + i * DAY_IN_MILLISECONDS));
@@ -146,4 +145,6 @@ export class SchedulerService {
   getEndTimeOfDay(date:Date):Date{
     return new Date(date.getFullYear(), date.getMonth(), date.getDate(), END_TIME, 0,0,0 );
   }
+
+
 }

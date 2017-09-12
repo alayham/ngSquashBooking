@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IUser } from "app/services/IUser";
 
-const MIN_USERS = 300; //the minumum number of users to generate randomly
-const MAX_USERS = 500; //the maximum number of users to generate randomly
+const MIN_USERS = 1000; //the minumum number of users to generate randomly
+const MAX_USERS = 2000; //the maximum number of users to generate randomly
 /**
  * 
  * 
