@@ -65,12 +65,13 @@ export class SearchComponent implements OnInit {
 
   
   get activeReservations():IReservation[]{
+
     if(!this.userService.user) return [];
     let tmpRes: IReservation[]=[];
     for(let court of this.clubService.getAllCourts()){
       let reservation = this.reservationsService.getSlotReservationForCourt(this.slot,court);
       if( reservation && reservation.user == this.userService.user){ //reserved by the current user
-        tmpRes.push(reservation);
+//        tmpRes.push(reservation);
       }
     }
     return tmpRes;
