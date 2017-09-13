@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { UserService } from "app/services/user-service.service";
@@ -15,7 +15,7 @@ import { UserService } from "app/services/user-service.service";
   templateUrl: './login-dialog.component.html',
   styleUrls: ['./login-dialog.component.css']
 })
-export class LoginDialogComponent implements OnInit {
+export class LoginDialogComponent {
   loginMessage:string = '';
 
   /**
@@ -28,8 +28,6 @@ export class LoginDialogComponent implements OnInit {
    */
   constructor(public userService: UserService, public dialogRef: MdDialogRef<LoginDialogComponent>, @Inject(MD_DIALOG_DATA) public data: any = {}) { }
 
-  ngOnInit() {
-  }
 
   /**
    * 

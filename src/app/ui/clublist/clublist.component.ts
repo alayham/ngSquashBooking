@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ClubService } from "app/services/club-service.service";
 
 /**
@@ -13,7 +13,7 @@ import { ClubService } from "app/services/club-service.service";
   templateUrl: './clublist.component.html',
   styleUrls: ['./clublist.component.css']
 })
-export class ClublistComponent implements OnInit {
+export class ClublistComponent {
 
   /**
    * Creates an instance of ClublistComponent.
@@ -27,8 +27,4 @@ export class ClublistComponent implements OnInit {
   constructor(public clubService: ClubService) { 
     
   }
-
-  ngOnInit() {
-  }
-
 }
