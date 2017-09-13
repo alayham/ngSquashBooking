@@ -1,5 +1,5 @@
 /**
- * 
+ * A timeslot
  * 
  * @export
  * @interface ITimeSlot

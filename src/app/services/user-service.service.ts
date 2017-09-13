@@ -4,7 +4,7 @@ import { IUser } from "app/services/IUser";
 const MIN_USERS = 1000; //the minumum number of users to generate randomly
 const MAX_USERS = 2000; //the maximum number of users to generate randomly
 /**
- * 
+ * The user service handles user accounts and logins
  * 
  * @export
  * @class UserService
@@ -21,6 +21,8 @@ export class UserService {
    * @memberOf UserService
    */
   constructor() {
+
+    //generate a random number of users
     this._totalUsers = Math.floor((MIN_USERS + Math.random() * MAX_USERS ));
 
     for(let i=1; i<=this._totalUsers; i++){
@@ -32,20 +34,9 @@ export class UserService {
     }
   }
 
-  /**
-   * 
-   * 
-   * @param {number} uid 
-   * @returns {IUser} 
-   * 
-   * @memberOf UserService
-   */
-  getUser(uid:number):IUser{
-    return;
-  }
 
   /**
-   * 
+   * log in a user
    * 
    * @param {string} userName 
    * @param {string} userPassword 
@@ -63,7 +54,7 @@ export class UserService {
     return false;
   }
   /**
-   * 
+   * log out the logged in user
    * 
    * 
    * @memberOf UserService

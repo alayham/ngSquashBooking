@@ -1,5 +1,5 @@
 /**
- * 
+ * Represents a user
  * 
  * @export
  * @interface IUser

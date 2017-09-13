@@ -8,10 +8,10 @@ import { ITimeSlot } from "app/services/ITimeSlot";
 import { IUser } from "app/services/IUser";
 
 const PROBABILITY_DENOMINATOR = 1.5; //use 4 for 25%, 5 for 20%, 2 for 50%, default is 4.
-const DEFAULT_TIMESLOTS = 12;
+const DEFAULT_TIMESLOTS = 12; //Used when we need a specific number of timeslots in scheduling.
 
 /**
- * 
+ * The reservation Service. 
  * 
  * @export
  * @class ReservationsService
@@ -30,14 +30,15 @@ export class ReservationsService {
    * @memberOf ReservationsService
    */
   constructor(public clubService: ClubService, public userService: UserService, public schedulerService: SchedulerService) { 
+    //Generate a random number of random reservations for each court in each club.
     for(let club of clubService.clubList){
       for(let court of club.clubCourts){
         for(let slot of schedulerService.timeSlots){
-          if( Math.floor(( Math.random() * PROBABILITY_DENOMINATOR )) == 0 ) {
+          if( Math.floor(( Math.random() * PROBABILITY_DENOMINATOR )) == 0 ) { //Random condition
             //We are generating a random reservation
             let reservation: IReservation = {
               court: court,
-              user: userService.userList[ Math.floor( Math.random() *  userService.userList.length )],
+              user: userService.userList[ Math.floor( Math.random() *  userService.userList.length )], //Random user 
               timeSlot: slot,
             }
             this.reservationList.push(reservation);
@@ -50,7 +51,8 @@ export class ReservationsService {
 
 
   /**
-   * 
+   * Return a number of next timeslots. used in scheduling.
+   * this should be moved to the scheduling service.
    * 
    * @param {number} [total=DEFAULT_TIMESLOTS] 
    * @returns {ITimeSlot[]} 
@@ -68,7 +70,7 @@ export class ReservationsService {
   }
 
   /**
-   * 
+   * checks whether a timeslot is free for a court.
    * 
    * @param {ITimeSlot} slot 
    * @param {ICourt} court 
@@ -85,7 +87,19 @@ export class ReservationsService {
     return true;
   }
  
+  /**
+   * checks if the timeslot is reserved by a user
+   * 
+   * @param {ITimeSlot} slot 
+   * @param {ICourt} court 
+   * @param {IUser} user 
+   * @returns 
+   * 
+   * @memberOf ReservationsService
+   */
   isReservedByUser(slot: ITimeSlot, court: ICourt, user: IUser){
+    if(!user && this.userService.user) 
+      user=this.userService.user; //if no user is provided, get the current user
     for(let reservation of court.courtReservations){
       if(reservation.timeSlot == slot ){
         return (reservation.user == user);
@@ -95,7 +109,7 @@ export class ReservationsService {
   }
 
   /**
-   * 
+   * checks whether a slot is reserved for a court.
    * 
    * @param {ITimeSlot} slot 
    * @param {ICourt} court 
@@ -113,7 +127,8 @@ export class ReservationsService {
   }
 
   /**
-   * 
+   * checks whether a court has availability for the upcoming number of slots
+   * This should be moved to the scheduling service
    * 
    * @param {ICourt} court 
    * @returns 
@@ -121,7 +136,7 @@ export class ReservationsService {
    * @memberOf ReservationsService
    */
   hasAvailability(court: ICourt)  {
-
+    //the default number of upcoming slots is DEFAULT_TIMESLOTS
     for(let slot of this.getNextTimeSlots()){
       let freeslot:boolean = true;
       for(let reservation of court.courtReservations){
@@ -135,7 +150,7 @@ export class ReservationsService {
   }
     
   /**
-   * 
+   * Make a new reservation.
    * 
    * @param {IReservation} reservation 
    * @returns {IReservation} 
@@ -149,7 +164,7 @@ export class ReservationsService {
   }
   
   /**
-   * 
+   * delete a reservation.
    * 
    * @param {IReservation} reservation 
    * 

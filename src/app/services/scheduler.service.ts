@@ -8,11 +8,11 @@ const BACKWORD_DAYS = 14; //how many days to go backword in the calendar. defaul
 const FORWARD_DAYS = 14; // how many days to go forward in the calendar. default is 14.
 
 const DAY_IN_MILLISECONDS =  24 * 60 * 60 * 1000; // the number of milliseconds in a day. DO NOT EDIT.
-const BACKWORD_DURATION = BACKWORD_DAYS * DAY_IN_MILLISECONDS;
-const FORWARD_DURATION = FORWARD_DAYS * DAY_IN_MILLISECONDS;
-const SLOT_DURATION = DEFAULT_DURATION * 60 * 1000;
-const SLOTS_PER_DAY = Math.floor(60 * (END_TIME - START_TIME) / DEFAULT_DURATION);
-const TOTAL_DAYS =  BACKWORD_DAYS + 1 + FORWARD_DAYS;
+const BACKWORD_DURATION = BACKWORD_DAYS * DAY_IN_MILLISECONDS; //the number of milliseconds to store backward in time
+const FORWARD_DURATION = FORWARD_DAYS * DAY_IN_MILLISECONDS; //the number of milliseconds to store forward in time
+const SLOT_DURATION = DEFAULT_DURATION * 60 * 1000; //the slot duration in milliseconds
+const SLOTS_PER_DAY = Math.floor(60 * (END_TIME - START_TIME) / DEFAULT_DURATION); //The number of slots per day.
+const TOTAL_DAYS =  BACKWORD_DAYS + 1 + FORWARD_DAYS; //the total number of days.
 /**
  * 
  * 
@@ -39,7 +39,7 @@ export class SchedulerService {
   }
 
   /**
-   * 
+   * Build the slots of a specific day.
    * 
    * @param {number} [milliseconds=new Date().valueOf()] 
    * 
@@ -61,7 +61,7 @@ export class SchedulerService {
   }
 
   /**
-   * 
+   * Build all timeslots in all scheduling days.
    * 
    * 
    * @memberOf SchedulerService
@@ -74,6 +74,14 @@ export class SchedulerService {
     }    
   }
 
+  /**
+   * Return the slots of a specific day
+   * 
+   * @param {Date} [day=new Date()] 
+   * @returns {ITimeSlot[]} 
+   * 
+   * @memberOf SchedulerService
+   */
   getSlotsOfDay(day: Date = new Date()):ITimeSlot[]{
     let daySlots:ITimeSlot[]=[];
     for(let slot of this.timeSlots){
@@ -84,6 +92,14 @@ export class SchedulerService {
     return(daySlots);
   }
 
+  /**
+   * Get the slot of a specific point in time
+   * 
+   * @param {Date} date 
+   * @returns {ITimeSlot} 
+   * 
+   * @memberOf SchedulerService
+   */
   getSlotByTime(date:Date):ITimeSlot{
     for(let slot of this.timeSlots){
       if(slot.startDate <= date && slot.endDate > date){
@@ -93,11 +109,15 @@ export class SchedulerService {
     return null;
   }
 
-  getUpcomingSlotsOfDay(day:Date):ITimeSlot{
-    //Might need this as well.
-    return
-  }
 
+  /**
+   * return an array of the upcoming days.
+   * 
+   * @param {Date} [today=new Date()] 
+   * @returns {Date[]} 
+   * 
+   * @memberOf SchedulerService
+   */
   getForwardDays(today:Date = new Date()):Date[]{
     let forwardDays:Date[] = [today];
     for(let i = 1; i <FORWARD_DAYS; i++){
@@ -106,9 +126,19 @@ export class SchedulerService {
     return forwardDays;
   }
 
+  /**
+   * return the timeslot of a scheduling cell 
+   * 
+   * @param {Date} date 
+   * @param {ITimeSlot} slotTime 
+   * @returns 
+   * 
+   * @memberOf SchedulerService
+   */
   getSlotofTableCell(date: Date, slotTime:ITimeSlot){
 
     //New logic, Huge performance gain, but might be buggy.
+    //Guessing the index of the slot in the slots array.
     let dayIndex:number = Math.floor( (date.valueOf() - this.startDate.valueOf()) / DAY_IN_MILLISECONDS );
     let timeIndex:number = Math.floor((slotTime.startDate.valueOf() - this.getStartTimeOfDay(slotTime.startDate).valueOf()) / SLOT_DURATION );
     let slotIndex = dayIndex * SLOTS_PER_DAY + timeIndex;
@@ -131,17 +161,51 @@ export class SchedulerService {
     return(null);
     */
   }
+  /**
+   * Utility: check if two dates are in the same day
+   * 
+   * @param {Date} date1 
+   * @param {Date} date2 
+   * @returns {boolean} 
+   * 
+   * @memberOf SchedulerService
+   */
   isSameDay(date1: Date, date2:Date): boolean{
     return date1.getDate() == date2.getDate() && date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear()
   }
+  /**
+   * Utility: ckeck if two dates have the same time of day
+   * 
+   * @param {Date} date1 
+   * @param {Date} date2 
+   * @returns 
+   * 
+   * @memberOf SchedulerService
+   */
   isSameTime(date1:Date, date2:Date){
     return date1.getHours() == date2.getHours() && date1.getMinutes() == date2.getMinutes() && date1.getSeconds() ==date2.getSeconds();
   }
 
+  /**
+   * get the sceduling start time of a day.
+   * 
+   * @param {Date} date 
+   * @returns {Date} 
+   * 
+   * @memberOf SchedulerService
+   */
   getStartTimeOfDay(date:Date):Date{
     return new Date(date.getFullYear(), date.getMonth(), date.getDate(), START_TIME, 0,0,0 );
   }
 
+  /**
+   * get the sceduling end time of a day.
+   * 
+   * @param {Date} date 
+   * @returns {Date} 
+   * 
+   * @memberOf SchedulerService
+   */
   getEndTimeOfDay(date:Date):Date{
     return new Date(date.getFullYear(), date.getMonth(), date.getDate(), END_TIME, 0,0,0 );
   }

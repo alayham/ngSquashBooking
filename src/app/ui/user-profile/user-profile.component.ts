@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "app/services/user-service.service";
 import { ReservationsService } from "app/services/reservations.service";
 import { IReservation } from "app/services/IReservation";
-import { MdDialog, MdDialogRef } from '@angular/material';
-import { UnreserveDialogComponent } from "app/ui/unreserve-dialog/unreserve-dialog.component";
-import { LoginDialogComponent } from "app/ui/login-dialog/login-dialog.component";
+import { DialogsService } from "app/services/dialogs/dialogs.service";
 
 @Component({
   selector: 'app-user-profile',
@@ -14,8 +12,6 @@ import { LoginDialogComponent } from "app/ui/login-dialog/login-dialog.component
 export class UserProfileComponent implements OnInit {
 
   now:Date = new Date();
-  unreserveDialogRef: MdDialogRef<UnreserveDialogComponent>;
-  loginDialogRef: MdDialogRef<LoginDialogComponent>;
   
   get upcomingReservations():IReservation[]{
     return this.reservationsService.reservationList.filter(res => res.user == this.userService.user && res.timeSlot.startDate > this.now)
@@ -38,30 +34,11 @@ export class UserProfileComponent implements OnInit {
 
   }
           
-  constructor(public userService: UserService, public reservationsService: ReservationsService, public dialog: MdDialog) { 
+  constructor(public userService: UserService, public reservationsService: ReservationsService, public dialogsService: DialogsService) { 
 
   }
 
   ngOnInit() {
 
   }
-
-
-  openUnreserveDialog(reservation: IReservation) {
-    this.unreserveDialogRef = this.dialog.open(UnreserveDialogComponent, { data: reservation });
-
-    this.unreserveDialogRef.afterClosed().subscribe(result => {
- 
-    });
-  }
-  
-  openLoginDialog() {
-    this.loginDialogRef = this.dialog.open(LoginDialogComponent, {data: { userName: 'user1', userPassword: 'pass1' }});
-
-    this.loginDialogRef.afterClosed().subscribe(result => {
-
-    });
-  }
-
-
 }

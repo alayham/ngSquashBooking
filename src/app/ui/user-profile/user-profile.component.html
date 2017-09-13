@@ -1,7 +1,7 @@
 <span *ngIf="userService.user; then loggedIn else anonymous"></span>
 
 <ng-template #anonymous>
-  <button md-raised-button color="primary" (click)="openLoginDialog()">Please Log In</button>
+  <button md-raised-button color="primary" (click)="dialogsService.openLoginDialog()">Please Log In</button>
 </ng-template>
 <ng-template #loggedIn>
     <md-toolbar><h2>User profile for {{userService.user.userName}}</h2></md-toolbar>
@@ -24,11 +24,10 @@
       <td>{{ reservation.court.courtName }}</td>
       <td><app-timeslot [slot]="reservation.timeSlot"></app-timeslot></td>
       <td>
-      <button *ngIf="reservation.timeSlot.startDate >= now" md-raised-button color="warn" (click)="openUnreserveDialog(reservation)">
+      <button *ngIf="reservation.timeSlot.startDate >= now" md-raised-button color="warn" (click)="dialogsService.openUnreserveDialog(reservation)">
           <md-icon>close</md-icon> 
           Unreserve
         </button>
-        <button *ngIf='reservation.timeSlot.startDate < now' md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>    
       </td>
     </tr>
   </table>
@@ -49,10 +48,6 @@
       <td>{{ reservation.court.courtName }}</td>
       <td><app-timeslot [slot]="reservation.timeSlot"></app-timeslot></td>
       <td>
-      <button *ngIf="reservation.timeSlot.startDate >= now" md-raised-button color="warn" (click)="openUnreserveDialog(reservation)">
-          <md-icon>close</md-icon> 
-          Unreserve
-        </button>
         <button *ngIf='reservation.timeSlot.startDate < now' md-raised-button color="warn" color="accent"><md-icon>remove_circle</md-icon> Expired</button>    
       </td>
     </tr>
