@@ -3,7 +3,7 @@
     <button md-raised-button color="primary" [routerLink] ="['/search']">Search availability</button>
     <span class="spacer"></span>
     <button md-raised-button  color="primary" (click)="dialogsService.openLoginDialog()" *ngIf="!userService.user"> Log in </button>
-    <button md-raised-button  color="primary" *ngIf="userService.user" [routerLink]="['/user']"> My Profile </button>
+    <button md-raised-button  color="primary" *ngIf="userService.user" [routerLink]="['/user']"> {{userService.user.userName}} </button>
     <button md-raised-button  color="primary" *ngIf="userService.user" (click)="userService.logout()"> Log out </button>
 </md-toolbar>
 
