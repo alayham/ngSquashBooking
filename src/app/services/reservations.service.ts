@@ -126,6 +126,19 @@ export class ReservationsService {
     return null;
   }
 
+
+  getDayReservationsForCourtByUser(day: Date):IReservation[]{
+    if(!this.userService.user)
+      return [];
+    let tmpRes:IReservation[]=[];
+    for(let reservation of this.reservationList){
+      if(reservation.user == this.userService.user && this.schedulerService.isSameDay(reservation.timeSlot.startDate, day) ){
+        tmpRes.push(reservation);
+      }
+    }
+    return tmpRes;
+  }
+
   /**
    * checks whether a court has availability for the upcoming number of slots
    * This should be moved to the scheduling service

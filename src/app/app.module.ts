@@ -19,7 +19,7 @@ import { ReservationsService } from './services/reservations.service';
 import { ReservationListComponent } from './admin/reservation-list/reservation-list.component';
 import { TimeslotComponent } from './ui/timeslot/timeslot.component';
 import { LoginDialogComponent } from './ui/login-dialog/login-dialog.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReserveDialogComponent } from './ui/reserve-dialog/reserve-dialog.component';
 import { UnreserveDialogComponent } from './ui/unreserve-dialog/unreserve-dialog.component';
 import { ReservationComponent } from './ui/reservation/reservation.component';
@@ -58,6 +58,8 @@ import { DialogsService } from "app/services/dialogs/dialogs.service";
     MdInputModule,
     MdListModule,
     MdSelectModule,
+    ReactiveFormsModule,
+    
     
     FormsModule,
 
@@ -72,8 +74,10 @@ import { DialogsService } from "app/services/dialogs/dialogs.service";
     ]),
   ],
 
-  entryComponents: [
-    LoginDialogComponent, ReserveDialogComponent,UnreserveDialogComponent
+  entryComponents: [  // these dialogs are automatically created, they are shown on demand by the DialogsService
+    LoginDialogComponent, 
+    ReserveDialogComponent,
+    UnreserveDialogComponent
   ],
   
   providers: [UserService, ClubService, SchedulerService, ReservationsService, DialogsService],

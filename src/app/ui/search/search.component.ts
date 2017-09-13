@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
   scheduleDay: Date ;
   _dateInput: number = this.now.valueOf();
   slotId: number = -1;
+  forwardDays:Date[] = this.schedulerService.getForwardDays(this.now);
 
   get dateInput():number{
     return this._dateInput;
@@ -55,4 +56,35 @@ export class SearchComponent implements OnInit {
     this.slotId = -1;
   }
 
+  get activeDayReservations():IReservation[]{
+    if(this.scheduleDay){
+      return this.reservationsService.getDayReservationsForCourtByUser(this.scheduleDay);
+    }else
+      return [];
+  }
+
+  
+  get activeReservations():IReservation[]{
+    if(!this.userService.user) return [];
+    let tmpRes: IReservation[]=[];
+    for(let court of this.clubService.getAllCourts()){
+      let reservation = this.reservationsService.getSlotReservationForCourt(this.slot,court);
+      if( reservation && reservation.user == this.userService.user){ //reserved by the current user
+        tmpRes.push(reservation);
+      }
+    }
+    return tmpRes;
+  }
+  get possibleReservations():IReservation[]{
+    let tmpRes: IReservation[]=[];
+    if(this.slot){
+      for(let court of this.clubService.getAllCourts()){
+        let reservation = this.reservationsService.getSlotReservationForCourt(this.slot,court);
+        if( !reservation){ //reserved by the current user
+          tmpRes.push({user: null, timeSlot: this.slot, court: court});
+        }
+      }
+    }
+    return tmpRes;
+  }
 }

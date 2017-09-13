@@ -1,26 +1,109 @@
 <md-toolbar>  
-    <select  [(ngModel)]="dateInput">
-        <option *ngFor="let day of schedulerService.getForwardDays(now)" [value]="day.valueOf()">
-            {{day | date:'MMM-dd'}}
-        </option>
-    </select>
-    <select mdInput placeholder="" [(ngModel)]="slotId">
-        <option *ngFor="let slot of timeslots; let i = index" [value] = "i">
-            {{slot.startDate  | date:'H:mm' }} - {{slot.endDate  | date:'H:mm' }}
-        </option>
-    </select> 
+    <h2>Please select a date and timeslot:</h2>
+    <md-toolbar-row>
+        <md-select mdInput placeholder="Please select a date"  name="day" [(ngModel)]="dateInput">
+                    <md-option *ngFor="let day of forwardDays" [value]="day.valueOf()">
+                        {{day | date:'MMM-dd'}}
+                    </md-option>
+                </md-select>
+            <md-select mdInput placeholder="Please select a timeslot" [(ngModel)]="slotId">
+            <md-option *ngFor="let slot of timeslots; let i = index" [value] = "i">
+                {{slot.startDate  | date:'H:mm' }} - {{slot.endDate  | date:'H:mm' }}
+            </md-option>
+        </md-select> 
+    </md-toolbar-row>
 </md-toolbar>
-    
-<md-toolbar  *ngIf="slot"><p *ngIf="slot">Available courts on {{scheduleDay | date:'y-MM-dd'}} at {{slot.startDate  | date:'H:mm' }} - {{slot.endDate  | date:'H:mm' }}</p></md-toolbar>
+<p></p>    
 
-<div *ngIf="slot">
-    <div *ngFor="let court of clubService.getAllCourts()">
-        <span *ngIf="!reservationsService.getSlotReservationForCourt(slot,court) || reservationsService.getSlotReservationForCourt(slot,court).user == userService.user">
-            <button ng-raised-button color="primary" (click)="dialogsService.openLoginDialog()" *ngIf="!reservationsService.getSlotReservationForCourt(slot,court) && !userService.user">Login</button>
-            <button ng-raised-button color="primary" (click)="dialogsService.openReserveDialog(slot,court)" *ngIf="!reservationsService.getSlotReservationForCourt(slot,court) && userService.user">Reserve</button>
-            <button ng-raised-button color="warn" (click)="dialogsService.openUnreserveDialog(reservationsService.getSlotReservationForCourt(slot,court))" *ngIf="userService.user && reservationsService.getSlotReservationForCourt(slot,court) && reservationsService.getSlotReservationForCourt(slot,court).user == userService.user">Unreserve</button>
-            
-            {{court.courtClub.clubName}} / {{court.courtName}} - <app-timeslot *ngIf="slot" [slot]="slot"></app-timeslot>
-        </span>
-    </div>
+<div *ngIf="activeReservations.length > 0">
+    <md-toolbar><p>You actually have the following reservations on {{scheduleDay | date:'y-MM-dd'}} at {{slot.startDate  | date:'H:mm' }} - {{slot.endDate  | date:'H:mm' }}</p></md-toolbar>
+
+    <table class="reservations">
+        <thead>
+            <tr color="primary">
+            <th>Club</th>
+            <th>Court</th>
+            <th>TimeSlot</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reservation of activeReservations">
+              <td>{{ reservation.court.courtClub.clubName }}</td> 
+              <td>{{ reservation.court.courtName }}</td>
+              <td><app-timeslot [slot]="reservation.timeSlot"></app-timeslot></td>
+              <td>
+                <button *ngIf="reservation.timeSlot.startDate >= now" md-raised-button color="warn" (click)="dialogsService.openUnreserveDialog(reservation)">
+                  <md-icon>close</md-icon> 
+                  Unreserve
+                </button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+        
+</div>
+
+<div *ngIf="activeDayReservations.length > 0">
+    <md-toolbar><p>You actually have the following reservations on {{scheduleDay | date:'y-MM-dd'}}</p></md-toolbar>
+
+    <table class="reservations">
+        <thead>
+            <tr color="primary">
+            <th>Club</th>
+            <th>Court</th>
+            <th>TimeSlot</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reservation of activeDayReservations">
+                <td>{{ reservation.court.courtClub.clubName }}</td> 
+                <td>{{ reservation.court.courtName }}</td>
+                <td><app-timeslot [slot]="reservation.timeSlot"></app-timeslot></td>
+                <td>
+                <button *ngIf="reservation.timeSlot.startDate >= now" md-raised-button color="warn" (click)="dialogsService.openUnreserveDialog(reservation)">
+                    <md-icon>close</md-icon> 
+                    Unreserve
+                </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        
+</div>
+    
+
+
+
+<div *ngIf="possibleReservations.length > 0">
+    <md-toolbar  *ngIf="slot"><p *ngIf="slot">Available courts on {{scheduleDay | date:'y-MM-dd'}} at {{slot.startDate  | date:'H:mm' }} - {{slot.endDate  | date:'H:mm' }}</p></md-toolbar>
+
+    <table class="reservations">
+        <thead>
+            <tr color="primary">
+            <th>Club</th>
+            <th>Court</th>
+            <th>TimeSlot</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reservation of possibleReservations">
+                <td>{{ reservation.court.courtClub.clubName }}</td> 
+                <td>{{ reservation.court.courtName }}</td>
+                <td><app-timeslot [slot]="reservation.timeSlot"></app-timeslot></td>
+                <td>
+                    <button *ngIf="userService.user" md-raised-button color="primary" (click)="dialogsService.openReserveDialog(reservation.timeSlot,reservation.court)">
+                        <md-icon>check_box</md-icon> 
+                        Reserve
+                    </button>
+                    <button *ngIf="!userService.user" md-raised-button color="primary" (click)="dialogsService.openLoginDialog()">
+                        <md-icon>lock_open</md-icon> 
+                        Login
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>            
 </div>

@@ -1,0 +1,15 @@
+.availability-slot{
+    font-size: 1.5em;
+    margin: 1em;
+}
+.center{
+    text-align: center;
+}
+table.reservations{
+    width:100%;
+}
+table.reservations th, table.reservations td{
+    padding: 1em;
+    text-align: left;
+    width: 25%;
+}    
