@@ -17,7 +17,7 @@ import { IReservation } from "app/services/IReservation";
   templateUrl: './reserve-dialog.component.html',
   styleUrls: ['./reserve-dialog.component.css']
 })
-export class ReserveDialogComponent implements OnInit {
+export class ReserveDialogComponent{
 
   /**
    * Creates an instance of ReserveDialogComponent.

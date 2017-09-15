@@ -17,7 +17,7 @@ import { IReservation } from "app/services/IReservation";
   templateUrl: './unreserve-dialog.component.html',
   styleUrls: ['./unreserve-dialog.component.css']
 })
-export class UnreserveDialogComponent implements OnInit {
+export class UnreserveDialogComponent {
 
   /**
    * Creates an instance of UnreserveDialogComponent.

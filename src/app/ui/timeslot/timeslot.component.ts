@@ -13,7 +13,7 @@ import { ITimeSlot } from "app/services/ITimeSlot";
   templateUrl: './timeslot.component.html',
   styleUrls: ['./timeslot.component.css']
 })
-export class TimeslotComponent implements OnInit {
+export class TimeslotComponent {
 
   @Input() slot: ITimeSlot;
 
