@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ITimeSlot } from "app/services/ITimeSlot";
 
 /**
@@ -24,7 +24,5 @@ export class TimeslotComponent implements OnInit {
    */
   constructor() { }
 
-  ngOnInit() {
-  }
 
 }

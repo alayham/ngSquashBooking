@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICourt } from "app/services/ICourt";
 import { ITimeSlot } from "app/services/ITimeSlot";
 import { UserService } from "app/services/user-service.service";
@@ -22,7 +22,7 @@ import { DialogsService } from "app/services/dialogs/dialogs.service";
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css']
 })
-export class ReservationComponent implements OnInit {
+export class ReservationComponent {
 
   @Input() slot: ITimeSlot;
   @Input() court: ICourt;
@@ -52,10 +52,6 @@ export class ReservationComponent implements OnInit {
    * @memberOf ReservationComponent
    */
   constructor(public userService:UserService, public reservationsService: ReservationsService, public dialogsService: DialogsService) { 
-
-  }
-
-  ngOnInit() {
 
   }
 

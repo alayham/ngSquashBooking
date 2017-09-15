@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { UserService } from "app/services/user-service.service";
@@ -31,10 +31,6 @@ export class ReserveDialogComponent implements OnInit {
   constructor(public userService: UserService, public reservationsService: ReservationsService, 
     public dialogRef: MdDialogRef<ReserveDialogComponent>, 
     @Inject(MD_DIALOG_DATA) public data: any = {}) { 
-
-  }
-
-  ngOnInit() {
 
   }
 

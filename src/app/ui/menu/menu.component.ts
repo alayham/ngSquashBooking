@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from "app/services/user-service.service";
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { LoginDialogComponent } from "app/ui/login-dialog/login-dialog.component";
@@ -15,7 +15,7 @@ import { DialogsService } from "app/services/dialogs/dialogs.service";
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent{
 
   dialogRef: MdDialogRef<LoginDialogComponent>;
   
@@ -28,6 +28,4 @@ export class MenuComponent implements OnInit {
    */
   constructor(public userService: UserService, public dialogsService: DialogsService) { }
 
-  ngOnInit() {
-  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SchedulerService } from "app/services/scheduler.service";
 import { ClubService } from "app/services/club-service.service";
 import { ITimeSlot } from "app/services/ITimeSlot";
@@ -13,7 +13,7 @@ import { DialogsService } from "app/services/dialogs/dialogs.service";
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
   now: Date = new Date();
   scheduleDay: Date ;
@@ -46,9 +46,6 @@ export class SearchComponent implements OnInit {
               public dialogsService: DialogsService) {
                 
     this.scheduleDay = new Date(this._dateInput);
-  }
-
-  ngOnInit() {
   }
 
   setDate(dateValue:number){

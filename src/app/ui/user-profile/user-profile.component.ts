@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from "app/services/user-service.service";
 import { ReservationsService } from "app/services/reservations.service";
 import { IReservation } from "app/services/IReservation";
@@ -9,7 +9,7 @@ import { DialogsService } from "app/services/dialogs/dialogs.service";
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
 
   now:Date = new Date();
   
@@ -38,7 +38,4 @@ export class UserProfileComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-
-  }
 }
