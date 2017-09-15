@@ -1,9 +1,9 @@
 <md-toolbar color="primary">    
-    <button md-raised-button color="primary" [routerLink] ="['']"><md-icon>home</md-icon> Squash Court Booking</button>
-    <button md-raised-button color="primary" [routerLink] ="['/search']"><md-icon>search</md-icon> Search availability</button>
+    <button md-raised-button color="primary" [routerLink] ="['']"><md-icon>home</md-icon><span class="wide">Squash Court Booking</span></button>
+    <button md-raised-button color="primary" [routerLink] ="['/search']"><md-icon>search</md-icon><span class="wide">Search availability</span></button>
     <span class="spacer"></span>
-    <button md-raised-button  color="primary" (click)="dialogsService.openLoginDialog()" *ngIf="!userService.user"><md-icon>lock_open</md-icon>Log in </button>
-    <button md-raised-button  color="primary" *ngIf="userService.user" [routerLink]="['/user']"><md-icon>perm_identity</md-icon>{{userService.user.userName}} </button>
-    <button md-raised-button  color="primary" *ngIf="userService.user" (click)="userService.logout()"><md-icon>lock</md-icon>Log out </button>
+    <button md-raised-button  color="primary" (click)="dialogsService.openLoginDialog()" *ngIf="!userService.user"><md-icon>lock_open</md-icon><span class="wide">Log in</span></button>
+    <button md-raised-button  color="primary" *ngIf="userService.user" [routerLink]="['/user']"><md-icon>perm_identity</md-icon><span class="wide">{{userService.user.userName}}</span></button>
+    <button md-raised-button  color="primary" *ngIf="userService.user" (click)="userService.logout()"><md-icon>lock</md-icon><span class="wide">Log out</span></button>
 </md-toolbar>
 

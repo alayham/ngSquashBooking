@@ -3,3 +3,16 @@
 .spacer{
     flex: 1 1 ;
 }
+
+.wide{ 
+    display: none;
+}
+
+@media (min-width: 40em){
+    .wide{
+        display:inline;
+    }
+}
+@media (min-width: 65em){
+
+}
