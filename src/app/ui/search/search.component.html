@@ -2,11 +2,11 @@
     <h2>Please select a date and timeslot:</h2>
     <md-toolbar-row>
         <md-select mdInput placeholder="Please select a date"  name="day" [(ngModel)]="dateInput">
-                    <md-option *ngFor="let day of forwardDays" [value]="day.valueOf()">
-                        {{day | date:'MMM-dd'}}
-                    </md-option>
-                </md-select>
-            <md-select mdInput placeholder="Please select a timeslot" [(ngModel)]="slotId">
+            <md-option *ngFor="let day of forwardDays" [value]="day.valueOf()">
+                {{day | date:'MMM-dd'}}
+            </md-option>
+        </md-select>
+        <md-select mdInput placeholder="Please select a timeslot" [(ngModel)]="slotId">
             <md-option *ngFor="let slot of timeslots; let i = index" [value] = "i">
                 {{slot.startDate  | date:'H:mm' }} - {{slot.endDate  | date:'H:mm' }}
             </md-option>

@@ -7,12 +7,22 @@
 .wide{ 
     display: none;
 }
-
+.extra-wide{
+    display: none;
+}
 @media (min-width: 40em){
     .wide{
-        display:inline;
+        display:initial;
+    }
+    .no-wide{
+        display: none;
     }
 }
 @media (min-width: 65em){
-
+    .extra-wide{
+        display: initial;
+    }
+    .no-extra-wide{
+        display: none;
+    }
 }

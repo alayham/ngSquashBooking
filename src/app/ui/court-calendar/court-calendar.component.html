@@ -1,5 +1,31 @@
-<md-toolbar><h2>Availability calendar for court {{court.courtName}}</h2></md-toolbar>
-<table cellpadding="0" cellspacing="0" style="width:100%; text-align:center;">
+<md-toolbar>
+  <h2>
+    Availability calendar for court {{court.courtName}} <span class="narrow no-extra-wide">on        
+    <md-select mdInput placeholder="Please select a date"  name="day" [(ngModel)]="dateInput">
+      <md-option *ngFor="let day of forwardDays" [value]="day.valueOf()">
+        {{day | date:'MMM-dd'}}
+      </md-option>
+    </md-select>
+    </span>
+  </h2>
+</md-toolbar>
+
+<table *ngIf="scheduleDay" cellpadding="0" cellspacing="0" class="narrow no-extra-wide">
+    <thead>
+      <th style="width:10em"></th>
+      <th >{{scheduleDay | date:'y-MM-dd'}}</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let refSlot of schedulerService.getSlotsOfDay()">
+        <th style="width:10em">{{refSlot.startDate | date:'H:mm'}} - {{refSlot.endDate | date:'H:mm'}}</th>
+        <td>
+            <app-reservation [slot]="schedulerService.getSlotofTableCell(scheduleDay,refSlot)" [court]="court"></app-reservation>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+<table cellpadding="0" cellspacing="0" class="extra-wide">
   <thead>
     <th></th>
     <th *ngFor="let date of schedulerService.getForwardDays()">{{date | date:'y-MM-dd'}}</th>
